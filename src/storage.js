@@ -13,7 +13,7 @@ const saveTokensOnStorage = () => {
  * @param {string} email { id, type, area, category, alcoholicOrNot, name, image }
  */
 const saveUserOnStorage = (email) => {
-  localStorage.setItem('user', { email });
+  localStorage.setItem('user', JSON.stringify({ email }));
 };
 
 /**
@@ -86,10 +86,10 @@ const editInProgressRecipe = (recipe) => {
   const listOfRecipes = JSON.parse(storage);
   const newList = listOfRecipes.map((recipeM) => {
     if (recipe.id === recipeM.id) {
-      const newRecipe = { ...recipeMap, ...recipe };
+      const newRecipe = { ...recipeM, ...recipe };
       return newRecipe;
     }
-    return recipeMap;
+    return recipeM;
   });
   localStorage.setItem('inProgressRecipes', JSON.stringify(newList));
 };
