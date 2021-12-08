@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import storage from '../storage';
 
 const Login = () => {
   const [state, setState] = useState({ email: '', password: '', isButtonDisabled: true });
@@ -7,7 +9,7 @@ const Login = () => {
     const EMAIL_REGEX = /\S+@\S+\.\S+/.test(state.email);
     console.log(EMAIL_REGEX);
     const PASSWORD_LENGTH = 6;
-    if (EMAIL_REGEX && state.password.length >= PASSWORD_LENGTH) {
+    if (EMAIL_REGEX && state.password.length > PASSWORD_LENGTH) {
       setState({ email: state.email, password: state.password, isButtonDisabled: false });
       return;
     }
@@ -17,6 +19,12 @@ const Login = () => {
   function handleChange({ target: { name, value } }) {
     setState({ email: state.email, password: state.password, [name]: value });
   }
+
+  function handleSubmit() {
+    storage.saveUserOnStorage(state.email);
+    storage.saveTokensOnStorage();
+  }
+
   return (
     <div>
       <input
@@ -33,13 +41,16 @@ const Login = () => {
         onChange={ handleChange }
         value={ state.password }
       />
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ state.isButtonDisabled }
-      >
-        Entrar
-      </button>
+      <Link to="/comidas">
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ state.isButtonDisabled }
+          onClick={ handleSubmit }
+        >
+          Entrar
+        </button>
+      </Link>
     </div>
   );
 };
