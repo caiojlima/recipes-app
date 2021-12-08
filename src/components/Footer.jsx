@@ -14,14 +14,14 @@ function Footer() {
           data-testid="drinks-bottom-btn"
         />
       </Link>
-      <Link to="explorar">
+      <Link to="/explorar">
         <img
           src={ exploreIcon }
           alt="ExploreButton"
           data-testid="explore-bottom-btn"
         />
       </Link>
-      <Link to="comidas">
+      <Link to="/comidas">
         <img
           src={ mealsIcon }
           alt="FoodButton"
