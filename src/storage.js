@@ -122,3 +122,17 @@ const removeProgressRecipe = ( id ) => {
 const cleanAllLocalStorage = () => {
   localStorage.clear();
 }
+
+const storage = {
+  addFavoriteRecipe,
+  addInProgressRecipe,
+  cleanAllLocalStorage,
+  editFavoriteRecipe,
+  editInProgressRecipe,
+  removeFavoriteRecipe,
+  removeProgressRecipe,
+  saveTokensOnStorage,
+  saveUserOnStorage,
+}
+
+export default storage;
