@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
 
 const SearchBar = ({ inputValue, pathname }) => {
   const [state, setState] = useState({ radioInput: 'INGREDIENT' });
-  const { handleMeals, handleDrinks } = useContext(RecipeContext);
+  const { handleMeals, handleDrinks, meals, drinks } = useContext(RecipeContext);
 
   const handleRadio = ({ target: { name, value } }) => {
     setState({ [name]: value });
@@ -29,6 +30,12 @@ const SearchBar = ({ inputValue, pathname }) => {
       handleDrinks(state.radioInput, inputValue);
     }
   };
+
+  if (pathname === '/comidas' && meals && meals.length === 1) {
+    return (<Redirect to={ `/comidas/${meals[0].idMeal}` } />);
+  } if (pathname === '/bebidas' && drinks && drinks.length === 1) {
+    return (<Redirect to={ `/bebidas/${drinks[0].idDrink}` } />);
+  }
 
   return (
     <div>
