@@ -21,6 +21,11 @@ const Provider = ({ children }) => {
       .then((response) => response.json())
       .then(({ meals }) => setMeal({ ...meal, meals })));
 
+  const searchMealByArea = (area) => (
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+      .then((response) => response.json())
+      .then(({ meals }) => setMeal({ ...meal, meals })));
+
   const searchMealById = (id) => (
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id} `)
       .then((response) => response.json())
@@ -38,8 +43,7 @@ const Provider = ({ children }) => {
 
   const getListOfAreas = () => (
     fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
-      .then((response) => response.json())
-      .then(({ meals }) => setMeal({ ...meal, list: meals })));
+      .then((response) => response.json()));
 
   const searchDrinksByIngredient = (ingredient = '') => (
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
@@ -80,8 +84,8 @@ const Provider = ({ children }) => {
     case 'RANDOM':
       generateRandomFood();
       break;
-    case 'LIST':
-      getListOfAreas();
+    case 'AREA':
+      searchMealByArea(value);
       break;
     default:
       break;
@@ -115,6 +119,7 @@ const Provider = ({ children }) => {
     ...drink,
     handleMeals,
     handleDrinks,
+    getListOfAreas,
   };
 
   return (
