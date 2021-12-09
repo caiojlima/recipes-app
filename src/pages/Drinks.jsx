@@ -20,7 +20,7 @@ const Drinks = () => {
   };
 
   const handleButton = (category) => {
-    if (wasClicked[category]) {
+    if (wasClicked[category] || category === 'All') {
       handleDrinks('NAME');
     } else {
       handleDrinks('CATEGORY', category);

@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 
 const CategoriesButtons = ({ categories, callback }) => (
   <div>
+    <button
+      type="button"
+      onClick={ () => callback('All') }
+      data-testid="All-category-filter"
+    >
+      All
+
+    </button>
     { categories.map(({ strCategory, i }) => (
       <button
         key={ i }
