@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -42,9 +43,11 @@ const Drinks = () => {
       <Header />
       <CategoriesButtons categories={ categories } callback={ handleButton } />
       { !!drinks && drinks.slice(0, CARD_LIMT).map((drink, i) => (
-        <div key={ i } data-testid={ `${i}-recipe-card` }>
-          <RecipeCard index={ i } name={ drink.strDrink } img={ drink.strDrinkThumb } />
-        </div>
+        <Link key={ i } to={ `/bebidas/${drink.idDrink}` }>
+          <div data-testid={ `${i}-recipe-card` }>
+            <RecipeCard index={ i } name={ drink.strDrink } img={ drink.strDrinkThumb } />
+          </div>
+        </Link>
       )) }
       <Footer />
     </>
