@@ -1,28 +1,39 @@
-import React, { useContext, useEffect } from 'react';
-import RecipeContext from '../context/RecipeContext';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
 
 const DrinksIngredients = () => {
-  const { drinks, handleDrinks } = useContext(RecipeContext);
+  const [state, setState] = useState([]);
+
+  const fetchIngredientsList = async () => {
+    const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
+    const { drinks } = await response.json();
+    setState(drinks);
+  };
 
   const sliceArray = () => {
     const ARRAY_LENGTH = 12;
-    const mealArray = drinks.slice(0, ARRAY_LENGTH);
-    console.log(mealArray);
-    return mealArray;
+    const drinksArray = state ? state.slice(0, ARRAY_LENGTH) : [];
+    return drinksArray;
   };
 
   useEffect(() => {
-    handleDrinks('INGREDIENT', 'Gin');
+    fetchIngredientsList();
   }, []);
 
   return (
     <>
       <Header />
-      { sliceArray().length && sliceArray().map((meal, i) => (
-        <div key={ Number(meal.idDrink) } data-testid={ `${i}-ingredient-card` }>
-          <IngredientCard meal={ meal } index={ i } name="strDrink" img="strDrinkThumb" />
+      { sliceArray().map((meal, i) => (
+        <div key={ i } data-testid={ `${i}-ingredient-card` }>
+          <IngredientCard
+            id={ i }
+            meal={ meal }
+            index={ i }
+            name="strIngredient1"
+            type="bebidas"
+            img="thecocktail"
+          />
         </div>
       )) }
     </>

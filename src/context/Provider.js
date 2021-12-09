@@ -37,7 +37,7 @@ const Provider = ({ children }) => {
       .then(({ drinks }) => setDrink({ ...drink, drinks })));
 
   const searchDrinksByIngredient = (ingredient = '') => (
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient} `)
+    fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?i=${ingredient} `)
       .then((response) => response.json())
       .then(({ drinks }) => setDrink({ ...drink, drinks })));
 
