@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ExploreDrinks = () => {
   const { drinks, handleDrinks } = useContext(RecipeContext);
@@ -25,6 +26,7 @@ const ExploreDrinks = () => {
       <Link to={ drinks.length ? `/bebidas/${drinks[0].idDrink}` : '' }>
         <button type="button" data-testid="explore-surprise">Me Surpreenda!</button>
       </Link>
+      <Footer />
     </>
   );
 };

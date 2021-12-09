@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
 
@@ -36,6 +37,7 @@ const DrinksIngredients = () => {
           />
         </div>
       )) }
+      <Footer />
     </>
   );
 };
