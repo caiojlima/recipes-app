@@ -7,6 +7,7 @@ import CategoriesButtons from '../components/CategoriesButtons';
 
 const Foods = () => {
   const [categories, setCategories] = useState([]);
+  const [wasClicked, setWasClicked] = useState(false);
   const { meals, handleMeals } = useContext(RecipeContext);
 
   const ARRAY_LIMIT = 12;
@@ -19,7 +20,12 @@ const Foods = () => {
   };
 
   const handleButton = (category) => {
-    handleMeals('CATEGORY', category);
+    if (wasClicked) {
+      handleMeals('NAME');
+    } else {
+      handleMeals('CATEGORY', category);
+    }
+    setWasClicked(!wasClicked);
   };
 
   useEffect(() => {
