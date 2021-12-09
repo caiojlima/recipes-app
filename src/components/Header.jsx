@@ -81,7 +81,7 @@ const Header = () => {
           data-testid="search-input"
         />
       }
-      <SearchBar inputValue={ searchInput } />
+      <SearchBar inputValue={ searchInput } pathname={ pathname } />
     </div>
   );
 };

@@ -2,21 +2,31 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
 
-const SearchBar = ({ inputValue }) => {
+const SearchBar = ({ inputValue, pathname }) => {
   const [state, setState] = useState({ radioInput: 'INGREDIENT' });
-  const { handleMeals } = useContext(RecipeContext);
+  const { handleMeals, handleDrinks } = useContext(RecipeContext);
 
   const handleRadio = ({ target: { name, value } }) => {
     setState({ [name]: value });
   };
 
-  const handleButton = () => {
+  const handleMealsButton = () => {
     if (state.radioInput === 'LETTER' && inputValue.length === 1) {
       handleMeals(state.radioInput, inputValue);
     } else if (state.radioInput === 'LETTER') {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
     } else {
       handleMeals(state.radioInput, inputValue);
+    }
+  };
+
+  const handleDrinksButton = () => {
+    if (state.radioInput === 'LETTER' && inputValue.length === 1) {
+      handleDrinks(state.radioInput, inputValue);
+    } else if (state.radioInput === 'LETTER') {
+      global.alert('Sua busca deve conter somente 1 (um) caracter');
+    } else {
+      handleDrinks(state.radioInput, inputValue);
     }
   };
 
@@ -61,7 +71,7 @@ const SearchBar = ({ inputValue }) => {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ handleButton }
+        onClick={ pathname === '/comidas' ? handleMealsButton : handleDrinksButton }
       >
         Pesquisar
 
@@ -72,6 +82,7 @@ const SearchBar = ({ inputValue }) => {
 
 SearchBar.propTypes = {
   inputValue: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
 };
 
 export default SearchBar;
