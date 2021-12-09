@@ -50,6 +50,7 @@ const ExploreForArea = () => {
             name={ ele.strMeal }
             img={ ele.strMealThumb }
             index={ index }
+            type="comidas"
           />
         ))
       }
