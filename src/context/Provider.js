@@ -46,6 +46,18 @@ const Provider = ({ children }) => {
       .then((response) => response.json())
       .then(({ drinks }) => setDrink({ ...drink, drinkId: drinks[0] })));
 
+  const generateRandomFood = () => (
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then((response) => response.json())
+      .then(({ meals }) => setMeal({ ...meal, meals }))
+  );
+
+  const generateRandomDrink = () => (
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+      .then((response) => response.json())
+      .then(({ drinks }) => setDrink({ ...drink, drinks }))
+  );
+
   const handleMeals = (type, value) => {
     switch (type) {
     case 'NAME':
@@ -59,6 +71,9 @@ const Provider = ({ children }) => {
       break;
     case 'ID':
       searchMealById(value);
+      break;
+    case 'RANDOM':
+      generateRandomFood();
       break;
     default:
       break;
@@ -78,6 +93,9 @@ const Provider = ({ children }) => {
       break;
     case 'ID':
       searchDrinkById(value);
+      break;
+    case 'RANDOM':
+      generateRandomDrink();
       break;
     default:
       break;
