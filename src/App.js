@@ -16,6 +16,8 @@ import Profile from './pages/Profile';
 import FavoritesRecipes from './pages/FavoritesRecipes';
 import ExploreFood from './pages/ExploreFood';
 import ExploreDrinks from './pages/ExploreDrinks';
+import NotFound from './pages/NotFound';
+import ExploreForArea from './pages/ExploreForArea';
 
 function App() {
   return (
@@ -48,12 +50,13 @@ function App() {
             path="/explorar/bebidas/ingredientes"
             component={ DrinksIngredients }
           />
-          <Route exact path="/explorar/comidas/area" component={ Explore } />
+          <Route exact path="/explorar/comidas/area" component={ ExploreForArea } />
           <Route exact path="/perfil" component={ Profile } />
           <Route exact path="/receitas-feitas" component={ RecipesMade } />
           <Route exact path="/receitas-favoritas" component={ FavoritesRecipes } />
           <Route exact path="/explorar/comidas" component={ ExploreFood } />
           <Route exact path="/explorar/bebidas" component={ ExploreDrinks } />
+          <Route exact path="/*" component={ NotFound } />
         </Switch>
       </Provider>
     </BrowserRouter>
