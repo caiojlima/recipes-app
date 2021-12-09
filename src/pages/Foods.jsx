@@ -1,8 +1,12 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const Foods = () => (
-  <Header />
+  <>
+    <Header />
+    <Footer />
+  </>
 );
 
 export default Foods;
