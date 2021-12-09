@@ -8,7 +8,7 @@ import CategoriesButtons from '../components/CategoriesButtons';
 const Drinks = () => {
   const { drinks, handleDrinks } = useContext(RecipeContext);
   const [categories, setCategories] = useState([]);
-  const [wasClicked, setWasClicked] = useState(false);
+  const [wasClicked, setWasClicked] = useState({});
 
   const CARD_LIMT = 12;
 
@@ -20,12 +20,12 @@ const Drinks = () => {
   };
 
   const handleButton = (category) => {
-    if (wasClicked) {
+    if (wasClicked[category]) {
       handleDrinks('NAME');
     } else {
       handleDrinks('CATEGORY', category);
     }
-    setWasClicked(!wasClicked);
+    setWasClicked({ [category]: !wasClicked[category] });
   };
 
   useEffect(() => {

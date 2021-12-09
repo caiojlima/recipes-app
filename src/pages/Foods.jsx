@@ -20,12 +20,12 @@ const Foods = () => {
   };
 
   const handleButton = (category) => {
-    if (wasClicked) {
+    if (wasClicked[category]) {
       handleMeals('NAME');
     } else {
       handleMeals('CATEGORY', category);
     }
-    setWasClicked(!wasClicked);
+    setWasClicked({ [category]: !wasClicked[category] });
   };
 
   useEffect(() => {
