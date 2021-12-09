@@ -12,7 +12,7 @@ const Provider = ({ children }) => {
     setMeal({ ...meal, meals });
   };
 
-  const searchMealByIngredient = (ingredient = '') => fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient} `)
+  const searchMealByIngredient = (ingredient = '') => fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
     .then((response) => response.json())
     .then(({ meals }) => setMeal({ ...meal, meals }));
 
@@ -32,12 +32,12 @@ const Provider = ({ children }) => {
       .then(({ drinks }) => setDrink({ ...drink, drinks })));
 
   const searchDrinksByFirstLetter = (letter = '') => (
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter} `)
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
       .then((response) => response.json())
       .then(({ drinks }) => setDrink({ ...drink, drinks })));
 
   const searchDrinksByIngredient = (ingredient = '') => (
-    fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?i=${ingredient} `)
+    fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?i=${ingredient}`)
       .then((response) => response.json())
       .then(({ drinks }) => setDrink({ ...drink, drinks })));
 

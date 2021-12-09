@@ -6,11 +6,16 @@ import searchIcon from '../images/searchIcon.svg';
 
 const Header = () => {
   const [toggleInput, setToggleInput] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
   const { location: { pathname } } = useHistory();
 
   const handleInput = () => (
     toggleInput ? setToggleInput(false) : setToggleInput(true)
   );
+
+  const handleChange = ({ target: { value } }) => {
+    setSearchInput(value);
+  };
 
   const toggleTitle = (path) => {
     switch (path) {
@@ -68,9 +73,15 @@ const Header = () => {
           />
         </button>)}
       {
-        toggleInput && <input type="text" data-testid="search-input" />
+        toggleInput
+        && <input
+          value={ searchInput }
+          onChange={ handleChange }
+          type="text"
+          data-testid="search-input"
+        />
       }
-      <SearchBar />
+      <SearchBar inputValue={ searchInput } />
     </div>
   );
 };

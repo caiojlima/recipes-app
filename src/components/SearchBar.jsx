@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+import RecipeContext from '../context/RecipeContext';
 
-const SearchBar = () => {
-  const [state, setState] = useState({ radioInput: 'ingredient' });
+const SearchBar = ({ inputValue }) => {
+  const [state, setState] = useState({ radioInput: 'INGREDIENT' });
+  const { handleMeals } = useContext(RecipeContext);
 
   const handleRadio = ({ target: { name, value } }) => {
     setState({ [name]: value });
+  };
+
+  const handleButton = () => {
+    if (state.radioInput === 'LETTER' && inputValue.length === 1) {
+      handleMeals(state.radioInput, inputValue);
+    } else if (state.radioInput === 'LETTER') {
+      global.alert('Sua busca deve conter somente 1 (um) caracter');
+    } else {
+      handleMeals(state.radioInput, inputValue);
+    }
   };
 
   return (
@@ -16,9 +29,9 @@ const SearchBar = () => {
           id="ingredient-search"
           name="radioInput"
           data-testid="ingredient-search-radio"
-          value="ingredient"
+          value="INGREDIENT"
           onChange={ handleRadio }
-          checked={ state.radioInput === 'ingredient' }
+          checked={ state.radioInput === 'INGREDIENT' }
         />
       </label>
       <label htmlFor="name-search">
@@ -28,9 +41,9 @@ const SearchBar = () => {
           id="name-search"
           name="radioInput"
           data-testid="name-search-radio"
-          value="name"
+          value="NAME"
           onChange={ handleRadio }
-          checked={ state.radioInput === 'name' }
+          checked={ state.radioInput === 'NAME' }
         />
       </label>
       <label htmlFor="letter-search">
@@ -40,14 +53,25 @@ const SearchBar = () => {
           id="letter-search"
           name="radioInput"
           data-testid="first-letter-search-radio"
-          value="letter"
+          value="LETTER"
           onChange={ handleRadio }
-          checked={ state.radioInput === 'letter' }
+          checked={ state.radioInput === 'LETTER' }
         />
       </label>
-      <button type="button" data-testid="exec-search-btn">Pesquisar</button>
+      <button
+        type="button"
+        data-testid="exec-search-btn"
+        onClick={ handleButton }
+      >
+        Pesquisar
+
+      </button>
     </div>
   );
+};
+
+SearchBar.propTypes = {
+  inputValue: PropTypes.string.isRequired,
 };
 
 export default SearchBar;
