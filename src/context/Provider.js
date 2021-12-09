@@ -98,6 +98,7 @@ const Provider = ({ children }) => {
       break;
     case 'CATEGORY':
       filterMealByCategory(value);
+      break;
     case 'AREA':
       searchMealByArea(value);
       break;
