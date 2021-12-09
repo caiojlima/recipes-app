@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const RecipeCard = ({ name, index, img, idMeal }) => (
+const RecipeCard = ({ name, index, img, idMeal, type }) => (
   <div>
     <Link
-      to={ `/comidas/${idMeal}` }
+      to={ `/${type}/${idMeal}` }
       data-testid={ `${index}-recipe-card` }
     >
       Entrar
@@ -20,6 +20,7 @@ RecipeCard.propTypes = {
   index: PropTypes.number.isRequired,
   idMeal: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default RecipeCard;
