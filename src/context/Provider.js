@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 
 const Provider = ({ children }) => {
-  const [meal, setMeal] = useState({ meals: [], mealsId: {} });
+  const [meal, setMeal] = useState({ meals: [], mealsId: {}, list: [] });
   const [drink, setDrink] = useState({ drinks: [], drinkId: {} });
 
   const searchMealByName = async (name = '') => {
@@ -18,6 +18,11 @@ const Provider = ({ children }) => {
 
   const searchMealByFirstLetter = (letter = '') => (
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+      .then((response) => response.json())
+      .then(({ meals }) => setMeal({ ...meal, meals })));
+
+  const searchMealByArea = (area) => (
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
       .then((response) => response.json())
       .then(({ meals }) => setMeal({ ...meal, meals })));
 
@@ -41,6 +46,10 @@ const Provider = ({ children }) => {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
       .then((response) => response.json())
       .then(({ drinks }) => setDrink({ ...drink, drinks })));
+
+  const getListOfAreas = () => (
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
+      .then((response) => response.json()));
 
   const searchDrinksByIngredient = (ingredient = '') => (
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
@@ -89,6 +98,8 @@ const Provider = ({ children }) => {
       break;
     case 'CATEGORY':
       filterMealByCategory(value);
+    case 'AREA':
+      searchMealByArea(value);
       break;
     default:
       break;
@@ -125,6 +136,7 @@ const Provider = ({ children }) => {
     ...drink,
     handleMeals,
     handleDrinks,
+    getListOfAreas,
   };
 
   return (
