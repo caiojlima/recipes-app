@@ -5,11 +5,11 @@ import Footer from '../components/Footer';
 import storage from '../storage';
 
 const Profile = () => {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <>
       <Header />
-      <p data-testid="profile-email">{ email }</p>
+      <p data-testid="profile-email">{ !!user && user.email }</p>
       <Link to="/receitas-feitas">
         <button data-testid="profile-done-btn" type="button">Receitas Feitas</button>
       </Link>
