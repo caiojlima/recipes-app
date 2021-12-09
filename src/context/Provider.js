@@ -26,6 +26,12 @@ const Provider = ({ children }) => {
       .then((response) => response.json())
       .then(({ meals }) => setMeal({ ...meal, idMeal: meals[0] })));
 
+  const filterMealByCategory = async (category) => {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+    const { meals } = await response.json();
+    setMeal({ ...meal, meals });
+  };
+
   const searchDrinksByName = (name = '') => (
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
       .then((response) => response.json())
@@ -45,6 +51,12 @@ const Provider = ({ children }) => {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((response) => response.json())
       .then(({ drinks }) => setDrink({ ...drink, drinkId: drinks[0] })));
+
+  const filterDrinkByCategory = async (category) => {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+    const { drinks } = await response.json();
+    setDrink({ ...drink, drinks });
+  };
 
   const generateRandomFood = () => (
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
@@ -75,6 +87,9 @@ const Provider = ({ children }) => {
     case 'RANDOM':
       generateRandomFood();
       break;
+    case 'CATEGORY':
+      filterMealByCategory(value);
+      break;
     default:
       break;
     }
@@ -96,6 +111,9 @@ const Provider = ({ children }) => {
       break;
     case 'RANDOM':
       generateRandomDrink();
+      break;
+    case 'CATEGORY':
+      filterDrinkByCategory(value);
       break;
     default:
       break;

@@ -18,6 +18,10 @@ const Foods = () => {
     setCategories(categoriesArr.slice(0, BUTTONS_QUANTITY));
   };
 
+  const handleButton = (category) => {
+    handleMeals('CATEGORY', category);
+  };
+
   useEffect(() => {
     handleMeals('NAME');
     fetchCategories();
@@ -30,7 +34,7 @@ const Foods = () => {
   return (
     <>
       <Header />
-      <CategoriesButtons categories={ categories } />
+      <CategoriesButtons callback={ handleButton } categories={ categories } />
       { !!meals && meals.slice(0, ARRAY_LIMIT).map((meal, i) => (
         <div key={ i } data-testid={ `${i}-recipe-card` }>
           <RecipeCard index={ i } name={ meal.strMeal } img={ meal.strMealThumb } />
