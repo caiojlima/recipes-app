@@ -6,6 +6,11 @@ import RecipeCard from '../components/RecipeCard';
 
 const Foods = () => {
   const { meals } = useContext(RecipeContext);
+
+  if (meals === null) {
+    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
+
   return (
     <>
       <Header />

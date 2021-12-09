@@ -8,6 +8,10 @@ const Drinks = () => {
   const { drinks } = useContext(RecipeContext);
   const CARD_LIMT = 12;
 
+  if (drinks === null) {
+    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
+
   return (
     <>
       <Header />
