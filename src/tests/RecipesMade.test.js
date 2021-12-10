@@ -23,7 +23,7 @@ describe('Testando a página principal de Receitas', () => {
       type: 'bebida',
       area: '',
       category: 'Cocktail',
-      alcoholicOrNot:  'Alcoholic',
+      alcoholicOrNot: 'Alcoholic',
       name: 'Aquamarine',
       image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
       doneDate: '23/06/2020',

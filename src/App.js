@@ -8,7 +8,6 @@ import Drinks from './pages/Drinks';
 import Foods from './pages/Foods';
 import FoodsDetails from './pages/FoodDetails';
 import DrinksDetails from './pages/DrinksDetails';
-import FoodsDetailsIngredients from './pages/FoodDetailsIngredients';
 import FoodIngredients from './pages/FoodIngredients';
 import DrinksIngredients from './pages/DrinksIngredients';
 import RecipesMade from './pages/RecipesMade';
@@ -35,16 +34,6 @@ function App() {
           <Route
             path="/comidas/:id"
             render={ (props) => <FoodsDetails { ...props } /> }
-          />
-          <Route
-            exact
-            path="/comidas/:id-comidas/ingredientes"
-            component={ FoodsDetailsIngredients }
-          />
-          <Route
-            exact
-            path="/bebidas/:id-bebidas/ingredientes"
-            component={ DrinksDetails }
           />
           <Route
             exact
