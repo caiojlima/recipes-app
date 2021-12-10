@@ -7,7 +7,6 @@ const Login = () => {
 
   useEffect(() => {
     const EMAIL_REGEX = /\S+@\S+\.\S+/.test(state.email);
-    console.log(EMAIL_REGEX);
     const PASSWORD_LENGTH = 6;
     if (EMAIL_REGEX && state.password.length > PASSWORD_LENGTH) {
       setState({ email: state.email, password: state.password, isButtonDisabled: false });

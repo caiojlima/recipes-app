@@ -31,7 +31,9 @@ const SearchBar = ({ inputValue, pathname }) => {
     }
   };
 
-  if (pathname === '/comidas' && meals && meals.length === 1) {
+  if (pathname === '/comidas'
+  && meals && meals.length === 1
+  && meals[0].idMeal !== '52968') {
     return (<Redirect to={ `/comidas/${meals[0].idMeal}` } />);
   } if (pathname === '/bebidas' && drinks && drinks.length === 1) {
     return (<Redirect to={ `/bebidas/${drinks[0].idDrink}` } />);
