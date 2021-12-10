@@ -3,11 +3,11 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './assets/renderWithRouter';
 import Provider from '../context/Provider';
-import Foods from '../pages/Foods';
+import Drinks from '../pages/Drinks';
 
 describe('Testando a página principal de Receitas', () => {
   beforeEach(() => {
-    renderWithRouter(<Provider><Foods /></Provider>);
+    renderWithRouter(<Provider><Drinks /></Provider>);
   });
 
   test('testa se renderiza os elementos na tela', async () => {
