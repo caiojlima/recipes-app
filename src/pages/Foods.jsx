@@ -10,7 +10,6 @@ const Foods = () => {
   const [wasClicked, setWasClicked] = useState(false);
   const { meals, handleMeals, isIngredient } = useContext(RecipeContext);
 
-  console.log(isIngredient);
   const ARRAY_LIMIT = 12;
 
   const fetchCategories = async () => {

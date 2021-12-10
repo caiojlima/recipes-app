@@ -11,9 +11,9 @@ const CategoriesButtons = ({ categories, callback }) => (
       All
 
     </button>
-    { categories.map(({ strCategory, i }) => (
+    { categories.map(({ strCategory }) => (
       <button
-        key={ i }
+        key={ strCategory }
         type="button"
         data-testid={ `${strCategory}-category-filter` }
         onClick={ () => callback(strCategory) }
