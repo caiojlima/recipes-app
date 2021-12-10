@@ -28,8 +28,14 @@ function App() {
           <Route exact path="/explorar" component={ Explore } />
           <Route exact path="/comidas" render={ () => <Foods name="Comidas" /> } />
           <Route exact path="/bebidas" component={ Drinks } />
-          <Route exact path="/bebidas/:id-bebidas" component={ DrinksDetails } />
-          <Route exact path="/comidas/:id-comidas" component={ FoodsDetails } />
+          <Route
+            path="/bebidas/:id"
+            render={ (props) => <DrinksDetails { ...props } /> }
+          />
+          <Route
+            path="/comidas/:id"
+            render={ (props) => <FoodsDetails { ...props } /> }
+          />
           <Route
             exact
             path="/comidas/:id-comidas/ingredientes"
