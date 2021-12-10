@@ -14,9 +14,53 @@ const FavoritesRecipes = () => {
     setFavorites(JSON.parse(localStorage.getItem('favoriteRecipes')));
   }, []);
 
+  const filterBy = ({ target: { name } }) => {
+    const favoriteData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    switch (name) {
+    case 'Food':
+      setFavorites(favoriteData.filter(({ type }) => type === 'comida'));
+      break;
+    case 'Drinks':
+      setFavorites(favoriteData.filter(({ type }) => type === 'bebida'));
+      break;
+    case 'All':
+      setFavorites(favoriteData);
+      break;
+    default:
+      break;
+    }
+  };
+
   return (
     <>
       <Header />
+      <button
+        data-testid="filter-by-food-btn"
+        name="Food"
+        type="button"
+        onClick={ filterBy }
+      >
+        Food
+
+      </button>
+      <button
+        data-testid="filter-by-drink-btn"
+        name="Drinks"
+        type="button"
+        onClick={ filterBy }
+      >
+        Drinks
+
+      </button>
+      <button
+        data-testid="filter-by-all-btn"
+        name="All"
+        type="button"
+        onClick={ filterBy }
+      >
+        All
+
+      </button>
       { favorites && favorites.map((fav, i) => (
         <div key={ i }>
           <FavoritesCard
