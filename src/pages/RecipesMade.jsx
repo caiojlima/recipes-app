@@ -22,6 +22,8 @@ const RecipesMade = () => {
             date={ recipe.doneDate }
             img={ recipe.image }
             tags={ recipe.tags }
+            area={ (recipe.type === 'comida') ? recipe.area : recipe.alcoholicOrNot }
+            category={ recipe.category }
           />
         </div>
       )) }

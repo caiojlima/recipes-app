@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
-import blackIcon from '../images/blackHeartIcon.svg';
 
-const RecipeMadeCard = ({ index, img, name, date, tags }) => (
+const RecipeMadeCard = ({ index, img, name, date, tags, area, category }) => (
   <>
     <h1 data-testid={ `${index}-horizontal-name` }>{name}</h1>
-    <h2 data-testid={ `${index}-horizontal-top-text` }>{name}</h2>
-
+    <h2 data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</h2>
     <img
       width="200px"
       data-testid={ `${index}-horizontal-image` }
@@ -25,13 +23,6 @@ const RecipeMadeCard = ({ index, img, name, date, tags }) => (
     >
       Share
     </button>
-    <button
-      type="button"
-      src={ blackIcon }
-      data-testid={ `${index}-horizontal-favorite-btn` }
-    >
-      Desfavoritar
-    </button>
   </>
 );
 
@@ -41,6 +32,8 @@ RecipeMadeCard.propTypes = {
   date: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  area: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default RecipeMadeCard;
