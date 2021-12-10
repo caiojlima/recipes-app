@@ -6,7 +6,7 @@ import RecipeCard from '../components/RecipeCard';
 import CategoriesButtons from '../components/CategoriesButtons';
 
 const Drinks = () => {
-  const { drinks, handleDrinks } = useContext(RecipeContext);
+  const { drinks, handleDrinks, isIngredient } = useContext(RecipeContext);
   const [categories, setCategories] = useState([]);
   const [wasClicked, setWasClicked] = useState({});
 
@@ -29,8 +29,10 @@ const Drinks = () => {
   };
 
   useEffect(() => {
-    handleDrinks('NAME');
-    fetchCategories();
+    if (!isIngredient) {
+      handleDrinks('NAME');
+      fetchCategories();
+    }
   }, []);
 
   if (drinks === null) {

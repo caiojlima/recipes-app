@@ -3,21 +3,23 @@ import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
 
-const IngredientCard = ({ meal, index, name, type, img }) => {
-  const { handleMeals, handleDrinks } = useContext(RecipeContext);
+const IngredientCard = ({ meal, index, name, type, img, ingredientId }) => {
+  const { handleMeals, handleDrinks, handleIngredient } = useContext(RecipeContext);
   const { location: { pathname } } = useHistory();
 
   function ingredientsFilter(mealName) {
+    handleIngredient(true);
     if (pathname.includes('comidas')) handleMeals('INGREDIENT', mealName);
     handleDrinks('INGREDIENT', mealName);
   }
 
   return (
-    <>
+    <div>
       <h1 data-testid={ `${index}-card-name` }>{meal[name]}</h1>
       <Link
         to={ `/${type}` }
         onClick={ () => ingredientsFilter(meal[name]) }
+        data-testid={ ingredientId }
       >
         <img
           data-testid={ `${index}-card-img` }
@@ -25,7 +27,7 @@ const IngredientCard = ({ meal, index, name, type, img }) => {
           alt="Ingredient Pic"
         />
       </Link>
-    </>
+    </div>
   );
 };
 
@@ -35,6 +37,7 @@ IngredientCard.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
+  ingredientId: PropTypes.string.isRequired,
 };
 
 export default IngredientCard;

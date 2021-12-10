@@ -26,8 +26,9 @@ const DrinksIngredients = () => {
     <>
       <Header />
       { sliceArray().map((meal, i) => (
-        <div key={ i } data-testid={ `${i}-ingredient-card` }>
+        <div key={ i }>
           <IngredientCard
+            ingredientId={ `${i}-ingredient-card` }
             id={ i }
             meal={ meal }
             index={ i }
