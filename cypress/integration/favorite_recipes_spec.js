@@ -125,7 +125,9 @@ describe('Favorite recipes screen', () => {
 
       cy.get('[data-testid="1-horizontal-favorite-btn"]').click();
       cy.window().then((win) => {
+        console.log('local', win.localStorage.getItem('favoriteRecipes'))
         expect(JSON.parse(win.localStorage.getItem('favoriteRecipes'))).to.deep.eq([favoriteRecipes[0]]);
+        console.log('expected', [favoriteRecipes[0]])
       });
 
       cy.get('[data-testid="0-horizontal-favorite-btn"]').click();
