@@ -575,6 +575,7 @@ describe('46 - Salve as receitas favoritas no `localStorage` na chave `favoriteR
 
     cy.get('[data-testid="favorite-btn"]').click().then(() => {
       const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      console.log('localStorage', favoriteRecipes);
       const expectedFavoriteRecipes = [
         {
           id: '52771',
@@ -586,6 +587,7 @@ describe('46 - Salve as receitas favoritas no `localStorage` na chave `favoriteR
           image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
         },
       ];
+      console.log('esperado', expectedFavoriteRecipes);
 
       expect(favoriteRecipes).to.deep.eq(expectedFavoriteRecipes);
     });

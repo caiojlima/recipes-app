@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 
 const Provider = ({ children }) => {
-  const [meal, setMeal] = useState({ meals: [], mealsId: {} });
-  const [drink, setDrink] = useState({ drinks: [], drinkId: {} });
+  const [meal, setMeal] = useState({ meals: [], idMeal: {} });
+  const [drink, setDrink] = useState({ drinks: [], idDrink: {} });
 
   const searchMealByName = async (name = '') => {
     const result = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
@@ -22,7 +22,7 @@ const Provider = ({ children }) => {
       .then(({ meals }) => setMeal({ ...meal, meals })));
 
   const searchMealById = (id) => (
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id} `)
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((response) => response.json())
       .then(({ meals }) => setMeal({ ...meal, idMeal: meals[0] })));
 
@@ -44,7 +44,7 @@ const Provider = ({ children }) => {
   const searchDrinkById = (id) => (
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((response) => response.json())
-      .then(({ drinks }) => setDrink({ ...drink, drinkId: drinks[0] })));
+      .then(({ drinks }) => setDrink({ ...drink, idDrink: drinks[0] })));
 
   const generateRandomFood = () => (
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
