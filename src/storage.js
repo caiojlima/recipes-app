@@ -21,14 +21,52 @@ const saveUserOnStorage = (email) => {
  * @description Add a favorite recipe to the localStorage 'favoriteRecipes' .
  * @param {object} recipe { id, type, area, category, alcoholicOrNot, name, image }
  */
-const addFavoriteRecipe = (recipe) => {
+const addFavoriteRecipe = (recipe, type) => {
   const storage = localStorage.getItem('favoriteRecipes');
-  if (!storage) {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
+  let oldRecipes = [];
+  if (storage) {
+    oldRecipes = JSON.parse(storage);
+  }
+
+  if (type === 'comida') {
+    const favoriteMeal = {
+      id: recipe.idMeal,
+      type: 'comida',
+      area: recipe.strArea,
+      category: recipe.strCategory,
+      alcoholicOrNot: '',
+      name: recipe.strMeal,
+      image: recipe.strMealThumb,
+    };
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify([...oldRecipes, favoriteMeal]));
     return;
   }
-  const oldRecipes = JSON.parse(storage);
-  localStorage.setItem('favoriteRecipes', JSON.stringify([...oldRecipes, recipe]));
+
+  if (type === 'bebida') {
+    const favoriteDrink = {
+      id: recipe.idDrink,
+      type: 'bebida',
+      area: '',
+      category: recipe.strCategory,
+      alcoholicOrNot: recipe.strAlcoholic,
+      name: recipe.strDrink,
+      image: recipe.strDrinkThumb,
+    };
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify([...oldRecipes, favoriteDrink]));
+    return;
+  }
+  throw new Error('Type incorreto, passe -comida- ou -bebida- ');
+};
+
+const isFavoriteRecipe = (idC, typeC) => {
+  const storage = localStorage.getItem('favoriteRecipes');
+  if (!storage) {
+    return false;
+  }
+  const data = JSON.parse(storage);
+  return data.some(({ id, type }) => (id === idC && type === typeC));
 };
 
 /**
@@ -66,14 +104,22 @@ const removeFavoriteRecipe = (id) => {
  * @description add a recipe in progress to the localStorage 'inProgressRecipes' .
  * @param {object} recipe { id, type, area, category, alcoholicOrNot, name, image }
  */
-const addInProgressRecipe = (recipe) => {
+const addInProgressRecipe = (recipe, type) => {
   const storage = localStorage.getItem('inProgressRecipes');
+
+  const typeOf = (type === 'meals') ? 'idMeal' : 'idDrink';
   if (!storage) {
-    localStorage.setItem('inProgressRecipes', JSON.stringify([recipe]));
+    const content = {
+      [type]: {
+        [typeOf]: [recipe],
+      },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify([...content]));
     return;
   }
   const oldRecipes = JSON.parse(storage);
-  localStorage.setItem('inProgressRecipes', JSON.stringify([...oldRecipes, recipe]));
+  oldRecipes[type][typeOf] = [recipe];
+  localStorage.setItem('inProgressRecipes', JSON.stringify([...oldRecipes]));
 };
 
 /**
@@ -106,6 +152,33 @@ const removeProgressRecipe = (id) => {
   localStorage.setItem('inProgressRecipes', JSON.stringify(newList));
 };
 
+const isInProgressRecipe = (comparedId, type) => {
+  const local = localStorage.getItem('inProgressRecipes');
+  if (!local) {
+    return false;
+  }
+  const recipes = JSON.parse(local);
+  console.log('storageeeeee', Object.keys(recipes[type]));
+  return Object.keys(recipes[type]).some((id) => id === comparedId);
+};
+
+const addToDoneRecipe = (recipe) => {
+  const oldRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (!Object.keys(oldRecipe).length) {
+    localStorage.setItem('doneRecipes', [recipe]);
+    return;
+  }
+  localStorage.setItem('doneRecipes', JSON.stringify([...oldRecipe, recipe]));
+};
+
+const isDoneRecipe = (comparedId) => {
+  const doneRecipes = localStorage.getItem('doneRecipes');
+  if (!doneRecipes) {
+    return false;
+  }
+  return JSON.parse(doneRecipes).some(({ id }) => id === comparedId);
+};
+
 /**
  * @name cleanAllLocalStorage
  * @description clean the localStorage .
@@ -124,6 +197,10 @@ const storage = {
   removeProgressRecipe,
   saveTokensOnStorage,
   saveUserOnStorage,
+  isDoneRecipe,
+  addToDoneRecipe,
+  isInProgressRecipe,
+  isFavoriteRecipe,
 };
 
 export default storage;
