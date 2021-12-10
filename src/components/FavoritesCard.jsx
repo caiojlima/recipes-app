@@ -26,28 +26,28 @@ const FavoritesCard = ({ index, name, category, area, img, type, id, callback })
           src={ img }
           alt="Recipe Favorite"
         />
-        <p data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</p>
-        <button
-          type="button"
-          src={ shareIcon }
-          data-testid={ `${index}-horizontal-share-btn` }
-          onClick={ () => {
-            navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`);
-            toggleCopy();
-          } }
-        >
-          Share
-        </button>
-        <button
-          type="button"
-          src={ blackIcon }
-          data-testid={ `${index}-horizontal-favorite-btn` }
-          onClick={ () => { handleFavorite(); callback(id); } }
-        >
-          Desfavoritar
-        </button>
-        { isCopied && <h3>Link copiado!</h3> }
       </Link>
+      <p data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</p>
+      <button
+        type="button"
+        src={ shareIcon }
+        data-testid={ `${index}-horizontal-share-btn` }
+        onClick={ () => {
+          navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`);
+          toggleCopy();
+        } }
+      >
+        Share
+      </button>
+      <button
+        type="button"
+        src={ blackIcon }
+        data-testid={ `${index}-horizontal-favorite-btn` }
+        onClick={ () => { handleFavorite(); callback(id); } }
+      >
+        Desfavoritar
+      </button>
+      { isCopied && <h3>Link copiado!</h3> }
     </div>
   );
 };
