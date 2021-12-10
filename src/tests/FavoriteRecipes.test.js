@@ -6,8 +6,6 @@ import Provider from '../context/Provider';
 import FavoritesRecipes from '../pages/FavoritesRecipes';
 
 describe('Testando a página principal de Receitas', () => {
-  
-
   const favoriteRecipes = [
     {
       id: '52771',
