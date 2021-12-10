@@ -24,6 +24,8 @@ const RecipesMade = () => {
             tags={ recipe.tags }
             area={ (recipe.type === 'comida') ? recipe.area : recipe.alcoholicOrNot }
             category={ recipe.category }
+            type={ recipe.type }
+            id={ recipe.id }
           />
         </div>
       )) }
