@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './assets/renderWithRouter';
 import Provider from '../context/Provider';
@@ -58,9 +58,9 @@ describe('Testando a página principal de Receitas', () => {
     expect(card11).toBeInTheDocument();
   });
 
-  test('testa o funcionamento do filtro por nome, ingrediente e primeira letra', () => {
-    const searchButton = screen.getByTestId('search-top-btn');
+  test('testa o funcionamento do filtro por categoria', async () => {
+    const categoriesButtons = screen.getAllByTestId(/-category-filter$/i);;
 
-    userEvent.click(searchButton);
+    userEvent.click(categoriesButtons[0]);
   });
 });
