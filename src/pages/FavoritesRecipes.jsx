@@ -5,6 +5,11 @@ import FavoritesCard from '../components/FavoritesCard';
 const FavoritesRecipes = () => {
   const [favorites, setFavorites] = useState([]);
 
+  const removeFavorite = (id2) => {
+    const newFavorites = favorites.filter(({ id }) => id !== id2);
+    setFavorites(newFavorites);
+  };
+
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem('favoriteRecipes')));
   }, []);
@@ -12,7 +17,7 @@ const FavoritesRecipes = () => {
   return (
     <>
       <Header />
-      { favorites.map((fav, i) => (
+      { favorites && favorites.map((fav, i) => (
         <div key={ i }>
           <FavoritesCard
             area={ (fav.type === 'comida') ? fav.area : fav.alcoholicOrNot }
@@ -20,6 +25,9 @@ const FavoritesRecipes = () => {
             index={ i }
             name={ fav.name }
             category={ fav.category }
+            type={ fav.type }
+            id={ fav.id }
+            callback={ removeFavorite }
           />
         </div>
       )) }
