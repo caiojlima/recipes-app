@@ -5,11 +5,16 @@ import RecipeContext from './RecipeContext';
 const Provider = ({ children }) => {
   const [meal, setMeal] = useState({ meals: [], idMeal: {}, list: [] });
   const [drink, setDrink] = useState({ drinks: [], idDrink: {} });
+  const [isIngredient, setIsIngredient] = useState(false);
 
   const searchMealByName = async (name = '') => {
     const result = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
     const { meals } = await result.json();
     setMeal({ ...meal, meals });
+  };
+
+  const handleIngredient = (bool) => {
+    setIsIngredient(bool);
   };
 
   const searchMealByIngredient = (ingredient = '') => fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
@@ -135,9 +140,11 @@ const Provider = ({ children }) => {
   const context = {
     ...meal,
     ...drink,
+    isIngredient,
     handleMeals,
     handleDrinks,
     getListOfAreas,
+    handleIngredient,
   };
 
   return (

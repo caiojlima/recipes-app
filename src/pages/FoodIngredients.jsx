@@ -26,8 +26,9 @@ const FoodsIngredients = () => {
     <>
       <Header />
       { !!sliceArray().length && sliceArray().map((meal, i) => (
-        <div key={ i } data-testid={ `${i}-ingredient-card` }>
+        <div key={ i }>
           <IngredientCard
+            ingredientId={ `${i}-ingredient-card` }
             meal={ meal }
             index={ i }
             name="strIngredient"

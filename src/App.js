@@ -26,8 +26,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route exact path="/explorar" component={ Explore } />
-          <Route exact path="/comidas" render={ () => <Foods name="Comidas" /> } />
-          <Route exact path="/bebidas" component={ Drinks } />
+          <Route exact path="/comidas" render={ (props) => <Foods { ...props } /> } />
+          <Route exact path="/bebidas" render={ (props) => <Drinks { ...props } /> } />
           <Route
             path="/bebidas/:id"
             render={ (props) => <DrinksDetails { ...props } /> }
