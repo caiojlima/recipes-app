@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 
 const RecipeMadeCard = ({ index, img, name, date, tags, area, category, type, id }) => {
@@ -10,14 +11,16 @@ const RecipeMadeCard = ({ index, img, name, date, tags, area, category, type, id
   };
   return (
     <>
-      <h1 data-testid={ `${index}-horizontal-name` }>{name}</h1>
+      <Link to={ `/${type}s/${id}` }>
+        <h1 data-testid={ `${index}-horizontal-name` }>{name}</h1>
+        <img
+          width="200px"
+          data-testid={ `${index}-horizontal-image` }
+          src={ img }
+          alt="Recipe Favorite"
+        />
+      </Link>
       <h2 data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</h2>
-      <img
-        width="200px"
-        data-testid={ `${index}-horizontal-image` }
-        src={ img }
-        alt="Recipe Favorite"
-      />
       {!!tags.length && tags.map((tag) => (
         <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
       ))}

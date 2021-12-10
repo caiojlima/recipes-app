@@ -10,10 +10,27 @@ const RecipesMade = () => {
     setRecipesMade(JSON.parse(localStorage.getItem('doneRecipes')));
   }, []);
 
+  const filterBy = ({ target: { name } }) => {
+    const recipesMadeData = JSON.parse(localStorage.getItem('doneRecipes'));
+    switch (name) {
+    case 'Food':
+      setRecipesMade(recipesMadeData.filter(({ type }) => type === 'comida'));
+      break;
+    case 'Drinks':
+      setRecipesMade(recipesMadeData.filter(({ type }) => type === 'bebida'));
+      break;
+    case 'All':
+      setRecipesMade(recipesMadeData);
+      break;
+    default:
+      break;
+    }
+  };
+
   return (
     <>
       <Header />
-      <FilterButtons />
+      <FilterButtons callback={ filterBy } />
       { recipesMade && recipesMade.map((recipe, i) => (
         <div key={ i }>
           <RecipeMadeCard
