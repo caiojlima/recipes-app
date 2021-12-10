@@ -104,21 +104,21 @@ const removeFavoriteRecipe = (id) => {
  * @description add a recipe in progress to the localStorage 'inProgressRecipes' .
  * @param {object} recipe { id, type, area, category, alcoholicOrNot, name, image }
  */
-const addInProgressRecipe = (recipe, type) => {
+const addInProgressRecipe = (recipe, type, id) => {
   const storage = localStorage.getItem('inProgressRecipes');
 
-  const typeOf = (type === 'meals') ? 'idMeal' : 'idDrink';
+  const typeOf = (type === 'meals') ? 'meals' : 'cocktails';
   if (!storage) {
     const content = {
-      [type]: {
-        [typeOf]: [recipe],
+      [typeOf]: {
+        [id]: recipe,
       },
     };
-    localStorage.setItem('inProgressRecipes', JSON.stringify([...content]));
+    localStorage.setItem('inProgressRecipes', JSON.stringify({ ...content }));
     return;
   }
   const oldRecipes = JSON.parse(storage);
-  oldRecipes[type][typeOf] = [recipe];
+  oldRecipes[type][typeOf] = [recipe, ...oldRecipes];
   localStorage.setItem('inProgressRecipes', JSON.stringify([...oldRecipes]));
 };
 
@@ -154,11 +154,11 @@ const removeProgressRecipe = (id) => {
 
 const isInProgressRecipe = (comparedId, type) => {
   const local = localStorage.getItem('inProgressRecipes');
+  console.log(local);
   if (!local) {
     return false;
   }
   const recipes = JSON.parse(local);
-  console.log('storageeeeee', Object.keys(recipes[type]));
   return Object.keys(recipes[type]).some((id) => id === comparedId);
 };
 
