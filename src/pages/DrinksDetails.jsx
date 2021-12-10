@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropType from 'prop-types';
-import Header from '../components/Header';
 import RecipeContext from '../context/RecipeContext';
 import storage from '../storage';
 import blackIcon from '../images/blackHeartIcon.svg';
@@ -140,7 +139,6 @@ const DrinksDetails = ({ match: { params: { id } } }) => {
   console.log('state', state);
   return (
     <div>
-      <Header />
       { !!Object.keys(idDrink).length && !!state && renderRecipe(
         { idDrink, state, linkCopiado, setLinkCopiado, update, setUpdate },
       )}
