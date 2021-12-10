@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import FavoritesCard from '../components/FavoritesCard';
+import FilterButtons from '../components/FilterButtons';
 
 const FavoritesRecipes = () => {
   const [favorites, setFavorites] = useState([]);
@@ -34,33 +35,7 @@ const FavoritesRecipes = () => {
   return (
     <>
       <Header />
-      <button
-        data-testid="filter-by-food-btn"
-        name="Food"
-        type="button"
-        onClick={ filterBy }
-      >
-        Food
-
-      </button>
-      <button
-        data-testid="filter-by-drink-btn"
-        name="Drinks"
-        type="button"
-        onClick={ filterBy }
-      >
-        Drinks
-
-      </button>
-      <button
-        data-testid="filter-by-all-btn"
-        name="All"
-        type="button"
-        onClick={ filterBy }
-      >
-        All
-
-      </button>
+      <FilterButtons callback={ filterBy } />
       { favorites && favorites.map((fav, i) => (
         <div key={ i }>
           <FavoritesCard
