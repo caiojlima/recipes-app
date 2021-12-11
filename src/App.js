@@ -8,8 +8,7 @@ import Drinks from './pages/Drinks';
 import Foods from './pages/Foods';
 import FoodsDetails from './pages/FoodDetails';
 import DrinksDetails from './pages/DrinksDetails';
-import FoodsDetailsIngredients from './pages/FoodDetailsIngredients';
-import FoodsIngredients from './pages/FoodIngredients';
+import FoodIngredients from './pages/FoodIngredients';
 import DrinksIngredients from './pages/DrinksIngredients';
 import RecipesMade from './pages/RecipesMade';
 import Profile from './pages/Profile';
@@ -50,18 +49,8 @@ function App() {
           />
           <Route
             exact
-            path="/comidas/:id-comidas/ingredientes"
-            component={ FoodsDetailsIngredients }
-          />
-          <Route
-            exact
-            path="/bebidas/:id-bebidas/ingredientes"
-            component={ DrinksDetails }
-          />
-          <Route
-            exact
             path="/explorar/comidas/ingredientes"
-            component={ FoodsIngredients }
+            component={ FoodIngredients }
           />
           <Route
             exact
