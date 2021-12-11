@@ -89,7 +89,7 @@ function DrinksInProgress({ match: { params: { id } } }) {
         data-testid="share-btn"
         type="button"
         onClick={ () => {
-          navigator.clipboard.writeText(`http://localhost:3000/comidas/${id}`);
+          navigator.clipboard.writeText(`http://localhost:3000/bebidas/${id}`);
           setLinkCopiado('Link copiado!');
         } }
       >
