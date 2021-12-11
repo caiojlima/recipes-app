@@ -34,7 +34,6 @@ const handleFavorite = (recipe, setUpdate) => {
 const renderRecipe = (
   { idMeal: recipe, state: drinks, linkCopiado, setLinkCopiado, update, setUpdate },
 ) => {
-  console.log(recipe);
   const { strMealThumb, strMeal, strCategory, strInstructions, strYoutube } = recipe;
   const favorite = (update)
     ? blackIcon : whiteIcon;
@@ -109,7 +108,7 @@ const renderRecipe = (
               data-testid="start-recipe-btn"
               style={ { position: 'fixed', bottom: '0%' } }
               onClick={ () => storage
-                .addInProgressRecipe(howToDo, 'meals', recipe.idMeal) }
+                .addInProgressRecipe(recipe, 'meals', recipe.idMeal) }
             >
               { storage.isInProgressRecipe(recipe.idMeal, 'meals')
                 ? 'Continuar Receita' : 'Iniciar Receita'}

@@ -6,33 +6,33 @@ import storage from '../storage';
 import blackIcon from '../images/blackHeartIcon.svg';
 import whiteIcon from '../images/whiteHeartIcon.svg';
 
-function FoodsInProgress({ match: { params: { id } } }) {
-  const [update, setUpdate] = useState(storage.isFavoriteRecipe(id, 'comida'));
+function DrinksInProgress({ match: { params: { id } } }) {
+  const [update, setUpdate] = useState(storage.isFavoriteRecipe(id, 'bebida'));
   const [linkCopied, setLinkCopiado] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const { handleMeals, idMeal } = useContext(RecipeContext);
+  const { handleDrinks, idDrink } = useContext(RecipeContext);
 
   useEffect(() => {
-    handleMeals('ID', id);
+    handleDrinks('ID', id);
   }, []);
 
-  const { strMealThumb, strMeal, strCategory, strInstructions } = idMeal;
+  const handleFavorite = (recipe, callback) => {
+    const isFavorite = storage.isFavoriteRecipe(recipe.idDrink, 'bebida');
+    if (!isFavorite) {
+      storage.addFavoriteRecipe(recipe, 'bebida');
+      callback(true);
+      return;
+    }
+    storage.removeFavoriteRecipe(recipe.idDrink);
+    callback(false);
+  };
 
   const favorite = (update)
     ? blackIcon : whiteIcon;
 
-  const handleFavorite = (recipe, callback) => {
-    const isFavorite = storage.isFavoriteRecipe(recipe.idMeal, 'comida');
-    if (!isFavorite) {
-      storage.addFavoriteRecipe(recipe, 'comida');
-      callback(true);
-      return;
-    }
-    storage.removeFavoriteRecipe(recipe.idMeal);
-    callback(false);
-  };
+  const { strDrinkThumb, strDrink, strCategory, strInstructions } = idDrink;
 
-  const recipeArray = Object.entries(idMeal);
+  const recipeArray = Object.entries(idDrink);
   const ingredients = recipeArray.reduce((acc, recp) => {
     let accumulator = acc;
     if (recp[0].includes('Ingredient') && recp[1]) {
@@ -62,11 +62,11 @@ function FoodsInProgress({ match: { params: { id } } }) {
 
   return (
     <>
-      <h1 data-testid="recipe-title">{ strMeal }</h1>
+      <h1 data-testid="recipe-title">{ strDrink }</h1>
       <img
         data-testid="recipe-photo"
-        src={ strMealThumb }
-        alt={ strMeal }
+        src={ strDrinkThumb }
+        alt={ strDrink }
       />
       <h1 data-testid="recipe-category">{ strCategory }</h1>
       {
@@ -81,7 +81,7 @@ function FoodsInProgress({ match: { params: { id } } }) {
         src={ favorite }
         data-testid="favorite-btn"
         type="button"
-        onClick={ () => handleFavorite(idMeal, setUpdate) }
+        onClick={ () => handleFavorite(idDrink, setUpdate) }
       >
         Favoritar
       </button>
@@ -109,8 +109,8 @@ function FoodsInProgress({ match: { params: { id } } }) {
   );
 }
 
-FoodsInProgress.propTypes = {
+DrinksInProgress.propTypes = {
   match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default FoodsInProgress;
+export default DrinksInProgress;
