@@ -108,8 +108,6 @@ const renderRecipe = (
               type="button"
               data-testid="start-recipe-btn"
               style={ { position: 'fixed', bottom: '0%' } }
-              onClick={ () => storage
-                .addInProgressRecipe(recipe, 'cocktails', recipe.idDrink) }
             >
               { isDoneRecipe
                 ? 'Continuar Receita' : 'Iniciar Receita'}

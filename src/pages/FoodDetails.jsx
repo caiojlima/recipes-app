@@ -107,8 +107,6 @@ const renderRecipe = (
               type="button"
               data-testid="start-recipe-btn"
               style={ { position: 'fixed', bottom: '0%' } }
-              onClick={ () => storage
-                .addInProgressRecipe(recipe, 'meals', recipe.idMeal) }
             >
               { storage.isInProgressRecipe(recipe.idMeal, 'meals')
                 ? 'Continuar Receita' : 'Iniciar Receita'}

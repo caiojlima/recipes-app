@@ -1,15 +1,14 @@
 import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 import storage from '../storage';
 import blackIcon from '../images/blackHeartIcon.svg';
 import whiteIcon from '../images/whiteHeartIcon.svg';
+import Ingredients from '../components/Ingredients';
 
 function DrinksInProgress({ match: { params: { id } } }) {
   const [update, setUpdate] = useState(storage.isFavoriteRecipe(id, 'bebida'));
   const [linkCopied, setLinkCopiado] = useState('');
-  const [disabled, setDisabled] = useState(true);
   const { handleDrinks, idDrink } = useContext(RecipeContext);
 
   useEffect(() => {
@@ -50,16 +49,6 @@ function DrinksInProgress({ match: { params: { id } } }) {
   const howToDo = Array(ingredients.length).fill().map((p, index) => (
     { ingredient: ingredients[index], measurement: measurements[index] }));
 
-  function handleChec() {
-    const array = [];
-    document.querySelectorAll('.teste').forEach((e) => {
-      array.push(e.checked);
-    });
-    const check = array.every((e) => e === true);
-    if (check) return setDisabled(false);
-    setDisabled(true);
-  }
-
   return (
     <>
       <h1 data-testid="recipe-title">{ strDrink }</h1>
@@ -69,13 +58,7 @@ function DrinksInProgress({ match: { params: { id } } }) {
         alt={ strDrink }
       />
       <h1 data-testid="recipe-category">{ strCategory }</h1>
-      {
-        howToDo.map(({ ingredient, measurement }, index) => (
-          <li key={ index } data-testid={ `${index}-ingredient-step` }>
-            <input type="checkbox" onChange={ handleChec } className="teste" />
-            {`${ingredient} ${measurement}`}
-          </li>))
-      }
+      <Ingredients howToDo={ howToDo } type="cocktails" id={ id } />
       <p data-testid="instructions">{ strInstructions }</p>
       <button
         src={ favorite }
@@ -96,15 +79,6 @@ function DrinksInProgress({ match: { params: { id } } }) {
         Compartilhar
       </button>
       <h1>{linkCopied}</h1>
-      <Link to="/receitas-feitas">
-        <button
-          data-testid="finish-recipe-btn"
-          type="button"
-          disabled={ disabled }
-        >
-          Finalizar a Receita
-        </button>
-      </Link>
     </>
   );
 }

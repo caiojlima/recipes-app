@@ -105,15 +105,15 @@ const removeFavoriteRecipe = (id) => {
  * @param {object} recipe { id, type, area, category, alcoholicOrNot, name, image }
  */
 
-const addInProgressRecipe = (recipe, type) => {
+const addInProgressRecipe = (recipe, type, id) => {
   const storage = localStorage.getItem('inProgressRecipes');
 
   const typeOf = (type === 'meals') ? 'meals' : 'cocktails';
   if (!storage) {
     const content = {
-      [typeOf]: [{
-        ...recipe,
-      }],
+      [typeOf]: {
+        [id]: [recipe],
+      },
     };
     localStorage.setItem('inProgressRecipes', JSON.stringify({ ...content }));
     return;
@@ -121,13 +121,15 @@ const addInProgressRecipe = (recipe, type) => {
   const oldRecipes = JSON.parse(storage);
   const oldType = oldRecipes[typeOf];
   if (oldType) {
-    oldRecipes[typeOf] = [
+    const oldIngredient = oldRecipes[typeOf][id];
+    oldRecipes[typeOf] = {
       ...oldType,
-      { ...recipe },
-    ];
+      [id]: [recipe, ...oldIngredient],
+    };
   } else {
+    const oldIngredient = oldRecipes[typeOf][id];
     oldRecipes[typeOf] = [
-      { ...recipe },
+      { [id]: [recipe, ...oldIngredient] },
     ];
   }
   localStorage.setItem('inProgressRecipes', JSON.stringify({ ...oldRecipes }));
