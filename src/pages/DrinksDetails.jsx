@@ -56,7 +56,6 @@ const renderRecipe = (
   const isDoneRecipe = storage.isInProgressRecipe(recipe.idDrink, 'cocktails');
   const howToDo = Array(ingredients.length).fill().map((p, index) => (
     { ingredient: ingredients[index], measurement: measurements[index] }));
-  console.log(howToDo);
   return (
     <>
       <img data-testid="recipe-photo" src={ strDrinkThumb } alt="" />
@@ -121,7 +120,6 @@ const renderRecipe = (
 const fetchFoods = async (setState) => {
   const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
   const data = await response.json();
-  console.log('fetch', data.meals);
   setState(data.meals);
 };
 
@@ -135,8 +133,6 @@ const DrinksDetails = ({ match: { params: { id } } }) => {
     handleDrinks('ID', id);
     fetchFoods(setState);
   }, [id]);
-  console.log(context);
-  console.log('state', state);
   return (
     <div>
       { !!Object.keys(idDrink).length && !!state && renderRecipe(
@@ -147,7 +143,7 @@ const DrinksDetails = ({ match: { params: { id } } }) => {
 };
 
 DrinksDetails.propTypes = {
-  match: PropType.arrayOf(PropType.object).isRequired,
+  match: PropType.oneOfType([PropType.object, PropType.array]).isRequired,
 };
 
 export default DrinksDetails;

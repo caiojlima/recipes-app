@@ -55,7 +55,6 @@ const renderRecipe = (
   }, []);
   const howToDo = Array(ingredients.length).fill().map((p, index) => (
     { ingredient: ingredients[index], measurement: measurements[index] }));
-  console.log('button enable?', storage.isDoneRecipe(recipe.idMeal));
   return (
     <>
       <img data-testid="recipe-photo" src={ strMealThumb } alt="" />
@@ -128,15 +127,12 @@ const FoodsDetails = ({ match: { params: { id } } }) => {
   const context = useContext(RecipeContext);
   const { handleMeals, idMeal } = context;
   const [update, setUpdate] = useState(storage.isFavoriteRecipe(id, 'comida'));
-  console.log(update);
   const [state, setState] = useState();
   const [linkCopiado, setLinkCopiado] = useState('');
   useEffect(() => {
     handleMeals('ID', id);
     fetchDrinks(setState);
   }, [id]);
-  console.log(context);
-  console.log('state', state);
   return (
     <div>
       { !!Object.keys(idMeal).length && !!state && renderRecipe(
@@ -147,7 +143,7 @@ const FoodsDetails = ({ match: { params: { id } } }) => {
 };
 
 FoodsDetails.propTypes = {
-  match: PropType.arrayOf(PropType.object).isRequired,
+  match: PropType.oneOfType([PropType.object, PropType.array]).isRequired,
 };
 
 export default FoodsDetails;
