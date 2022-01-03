@@ -157,8 +157,6 @@ const isDoneRecipe = (comparedId) => {
     return false;
   }
   const parsed = JSON.parse(doneRecipes);
-  console.log(parsed);
-  console.log(comparedId)
   return parsed.some(({ id }) => id === comparedId);
 };
 
