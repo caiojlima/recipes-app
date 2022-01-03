@@ -8,7 +8,8 @@ import CategoriesButtons from '../components/CategoriesButtons';
 const Foods = () => {
   const [categories, setCategories] = useState([]);
   const [wasClicked, setWasClicked] = useState(false);
-  const { meals, handleMeals, isIngredient } = useContext(RecipeContext);
+  const { meals, handleMeals,
+    isIngredient, handleIngredient } = useContext(RecipeContext);
 
   const ARRAY_LIMIT = 12;
 
@@ -33,6 +34,10 @@ const Foods = () => {
       handleMeals('NAME');
       fetchCategories();
     }
+  }, []);
+
+  useEffect(() => () => {
+    handleIngredient(false);
   }, []);
 
   if (meals === null) {

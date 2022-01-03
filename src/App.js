@@ -17,6 +17,8 @@ import ExploreFood from './pages/ExploreFood';
 import ExploreDrinks from './pages/ExploreDrinks';
 import NotFound from './pages/NotFound';
 import ExploreForArea from './pages/ExploreForArea';
+import FoodsInProgress from './pages/FoodsInProgress';
+import DrinksInProgress from './pages/DrinksInProgress';
 
 function App() {
   return (
@@ -27,6 +29,16 @@ function App() {
           <Route exact path="/explorar" component={ Explore } />
           <Route exact path="/comidas" render={ (props) => <Foods { ...props } /> } />
           <Route exact path="/bebidas" render={ (props) => <Drinks { ...props } /> } />
+          <Route
+            exact
+            path="/comidas/:id/in-progress"
+            component={ (props) => <FoodsInProgress { ...props } /> }
+          />
+          <Route
+            exact
+            path="/bebidas/:id/in-progress"
+            component={ (props) => <DrinksInProgress { ...props } /> }
+          />
           <Route
             path="/bebidas/:id"
             render={ (props) => <DrinksDetails { ...props } /> }

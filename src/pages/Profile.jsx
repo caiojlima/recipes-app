@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import storage from '../storage';
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -23,7 +22,7 @@ const Profile = () => {
       </Link>
       <Link to="/">
         <button
-          onClick={ storage.cleanAllLocalStorage }
+          onClick={ () => localStorage.clear() }
           data-testid="profile-logout-btn"
           type="button"
         >
