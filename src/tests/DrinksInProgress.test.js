@@ -8,6 +8,11 @@ import DrinksInProgress from '../pages/DrinksInProgress';
 const fakeProp = { match: { params: { id: '15997' } } };
 
 describe('Teste de funcionalidade do FoodInProgress', () => {
+  test('Teste', async () => {
+    renderWithRouter(<Provider><DrinksInProgress { ...fakeProp } /></Provider>);
+    const text = await screen.findByRole('heading', { name: /gg/i });
+    expect(text).toBeInTheDocument();
+  });
   test('Teste2', async () => {
     renderWithRouter(<Provider><DrinksInProgress { ...fakeProp } /></Provider>);
     const endRecipe = await screen.findByRole('link', { name: /Finalizar a Receita/i });

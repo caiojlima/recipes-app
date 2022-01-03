@@ -62,5 +62,16 @@ describe('Testando a página principal de Receitas', () => {
     const categoriesButtons = screen.getAllByTestId(/-category-filter$/i);
 
     userEvent.click(categoriesButtons[0]);
+    const firstRecipe = await screen.findByRole('heading',
+      { name: 'Corba', level: 1 });
+    expect(firstRecipe).toBeInTheDocument();
+  });
+  test('testa os filtros', async () => {
+    const categoriesButtons = await screen.findByTestId(/Beef-category-filter/i);
+    userEvent.click(categoriesButtons);
+
+    const firstRecipe = await screen.findByRole('heading',
+      { name: 'Beef and Mustard Pie', level: 1 });
+    expect(firstRecipe).toBeInTheDocument();
   });
 });
