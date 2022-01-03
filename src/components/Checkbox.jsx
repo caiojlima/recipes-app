@@ -7,6 +7,7 @@ function Checkbox({ check, handleCheck, ingredient }) {
     <input
       type="checkbox"
       className="checkbox"
+      data-testid="check-progress"
       onClick={ ({ target: { checked } }) => setTeste(checked) }
       onChange={ () => handleCheck(ingredient) }
       checked={ teste || check }
