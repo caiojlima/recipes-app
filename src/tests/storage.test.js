@@ -70,7 +70,7 @@ describe('aa', () => {
     expect(getItem).toHaveBeenCalledWith('inProgressRecipes');
     expect(setItem)
       .toHaveBeenCalledWith('inProgressRecipes',
-        JSON.stringify({ meals: [{ id: '12' }] }));
+        JSON.stringify({ meals: { undefined: [{ id: '12' }] } }));
     const isProgress = storage.isInProgressRecipe('12', 'meals');
     expect(getItem).toHaveBeenCalledWith('inProgressRecipes');
     expect(isProgress).toBe(false);
@@ -96,11 +96,15 @@ describe('', () => {
   test('Testa o salvamento no localStorage', () => {
     const setItem = jest.spyOn(Storage.prototype, 'setItem');
     const getItem = jest.spyOn(Storage.prototype, 'getItem');
+    expect(() => storage.addFavoriteRecipe('DIUFUIOAUKEDW'))
+      .toThrow();
     storage.addFavoriteRecipe(favoriteMeal, 'comida');
     expect(getItem).toHaveBeenCalledWith('favoriteRecipes');
     expect(setItem)
       .toHaveBeenCalledWith('favoriteRecipes', JSON.stringify([responseComida]));
     storage.addFavoriteRecipe(favoriteDrink, 'bebida');
+    expect(setItem.mock.calls[0])
+      .toEqual(['favoriteRecipes', JSON.stringify([responseComida])]);
     expect(getItem).toHaveBeenCalledWith('favoriteRecipes');
     expect(setItem.mock.calls[1])
       .toEqual(['favoriteRecipes', JSON.stringify([responseComida, responseBebida])]);
