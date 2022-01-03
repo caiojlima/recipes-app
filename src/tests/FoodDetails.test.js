@@ -77,6 +77,6 @@ describe('Teste de funcionalidade do FoodDetails', () => {
     expect(getItem).toHaveBeenCalled();
     favoriteButton.click();
     expect(storage.addFavoriteRecipe).toHaveBeenCalled();
-    expect(setItem).toHaveBeenCalled();
+    expect(setItem).not.toHaveBeenCalled();
   });
 });

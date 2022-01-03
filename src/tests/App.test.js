@@ -1,22 +1,48 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './assets/renderWithRouter';
-import Provider from '../context/Provider';
 import App from '../App';
 
 describe('Testando a página principal de Receitas', () => {
-  beforeEach(() => {
-    renderWithRouter(<Provider><App /></Provider>);
-  });
-
-  test('testa se renderiza os elementos na tela', async () => {
-    const emailInput = screen.getByTestId('email-input');
-    const passwordInput = screen.getByTestId('password-input');
+  test('test header', async () => {
+    const pageTitle = 'page-title';
+    const exploreIngredients = 'explore-by-ingredient';
+    const { history } = renderWithRouter(<App />);
+    expect(history.location.pathname).toBe('/');
+    console.log(history.location.pathname);
+    const email = await screen.findByTestId('email-input');
+    const password = screen.getByTestId('password-input');
     const loginButton = screen.getByTestId('login-submit-btn');
-
-    expect(emailInput).toBeInTheDocument();
-    expect(passwordInput).toBeInTheDocument();
-    expect(loginButton).toBeInTheDocument();
+    // expect(email).toBeInTheDocument();
+    // expect(password).toBeInTheDocument();
+    // expect(loginButton).toBeInTheDocument();
     expect(loginButton).toBeDisabled();
+    expect(history.location.pathname).toBe('/');
+    fireEvent.change(email, { target: { value: 'eric@gmail.com' } });
+    fireEvent.change(password, { target: { value: '1234567890' } });
+    expect(loginButton).not.toBeDisabled();
+    loginButton.click();
+    expect((await screen.findByTestId('All-category-filter'))).toBeInTheDocument();
+    expect((await screen.findByTestId('Beef-category-filter'))).toBeInTheDocument();
+    expect(await screen.findByTestId('Breakfast-category-filter')).toBeInTheDocument();
+    expect(await screen.findByTestId('Chicken-category-filter')).toBeInTheDocument();
+    expect(await screen.findByTestId('Dessert-category-filter')).toBeInTheDocument();
+    expect(await screen.findByTestId('Goat-category-filter')).toBeInTheDocument();
+    (await screen.findByTestId('explore-bottom-btn')).click();
+    expect(screen.getByTestId(pageTitle).textContent).toBe('Explorar');
+    expect((await screen.findByTestId('explore-drinks'))).toBeInTheDocument();
+    (await screen.findByTestId('explore-food')).click();
+    expect(screen.getByTestId(pageTitle).textContent).toBe('Explorar Comidas');
+    expect((await screen.findByTestId('explore-by-area'))).toBeInTheDocument();
+    expect((await screen.findByTestId('explore-surprise'))).toBeInTheDocument();
+    (await screen.findByTestId(exploreIngredients)).click();
+    expect(screen.getByTestId(pageTitle).textContent).toBe('Explorar Ingredientes');
+    (await screen.findByTestId('explore-bottom-btn')).click();
+    (await screen.findByTestId('explore-drinks')).click();
+    expect(screen.getByTestId(pageTitle).textContent).toBe('Explorar Bebidas');
+    expect((await screen.findByTestId(exploreIngredients))).toBeInTheDocument();
+    expect((await screen.findByTestId('explore-surprise'))).toBeInTheDocument();
+    (await screen.findByTestId(exploreIngredients)).click();
+    expect(screen.getByTestId(pageTitle).textContent).toBe('Explorar Ingredientes');
   });
 });

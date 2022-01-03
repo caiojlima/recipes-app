@@ -28,8 +28,11 @@ describe('test header', () => {
     expect(comidasprofilePic).toBeInTheDocument();
     const firstfoodRecipe = await screen.findByTestId('1-recipe-card');
     expect(firstfoodRecipe).toBeInTheDocument();
-    const serchBarButton = screen.getByTestId('search-top-btn');
-    expect(serchBarButton).toBeInTheDocument();
+    expect(screen.getByTestId('search-top-btn')).toBeInTheDocument();
+    expect(screen.getByTestId('name-search-radio')).toBeInTheDocument();
+    expect(screen.getByTestId('first-letter-search-radio')).toBeInTheDocument();
+    expect(screen.getByTestId('exec-search-btn')).toBeInTheDocument();
+    expect(screen.getByTestId('All-category-filter')).toBeInTheDocument();
     const searchByIngredient = screen.getByTestId('ingredient-search-radio');
     expect(searchByIngredient).toBeInTheDocument();
     screen.getByTestId('drinks-bottom-btn').click();
