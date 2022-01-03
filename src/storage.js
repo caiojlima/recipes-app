@@ -70,24 +70,6 @@ const isFavoriteRecipe = (idC, typeC) => {
 };
 
 /**
- * @name editFavoriteRecipe
- * @description edit a favorite recipe to the localStorage 'favoriteRecipes' .
- * @param {object} recipe { id, type, area, category, alcoholicOrNot, name, image }
- */
-const editFavoriteRecipe = (recipe) => {
-  const storage = localStorage.getItem('favoriteRecipes');
-  const listOfRecipes = JSON.parse(storage);
-  const newList = listOfRecipes.map((recipeMap) => {
-    if (recipe.id === recipeMap.id) {
-      const newRecipe = { ...recipeMap, ...recipe };
-      return newRecipe;
-    }
-    return recipeMap;
-  });
-  localStorage.setItem('favoriteRecipes', JSON.stringify(newList));
-};
-
-/**
  * @name removeFavoriteRecipe
  * @description remove a favorite recipe to the localStorage 'favoriteRecipes' .
  * @param {string} id { id, type, area, category, alcoholicOrNot, name, image }
@@ -107,7 +89,6 @@ const removeFavoriteRecipe = (id) => {
 
 const addInProgressRecipe = (recipe, type, id) => {
   const storage = localStorage.getItem('inProgressRecipes');
-
   const typeOf = (type === 'meals') ? 'meals' : 'cocktails';
   if (!storage) {
     const content = {
@@ -136,34 +117,18 @@ const addInProgressRecipe = (recipe, type, id) => {
 };
 
 /**
- * @name editInProgressRecipe
- * @description edit a recipe in progress to the localStorage 'inProgressRecipes' .
- * @param {object} recipe { id, type, area, category, alcoholicOrNot, name, image }
- */
-const editInProgressRecipe = (recipe) => {
-  const storage = localStorage.getItem('inProgressRecipes');
-  const listOfRecipes = JSON.parse(storage);
-  const newList = listOfRecipes.map((recipeM) => {
-    if (recipe.id === recipeM.id) {
-      const newRecipe = { ...recipeM, ...recipe };
-      return newRecipe;
-    }
-    return recipeM;
-  });
-  localStorage.setItem('inProgressRecipes', JSON.stringify(newList));
-};
-
-/**
  * @name removeProgressRecipe
  * @description remove a recipe in progress to the localStorage 'inProgressRecipes' .
  * @param {string} id { id, type, area, category, alcoholicOrNot, name, image }
  */
-const removeProgressRecipe = (id) => {
-  const storage = localStorage.getItem('inProgressRecipes');
-  const listOfRecipes = JSON.parse(storage);
-  const newList = listOfRecipes.filter((recipeMap) => (recipeMap.id !== id));
-  localStorage.setItem('inProgressRecipes', JSON.stringify(newList));
-};
+// const removeProgressRecipe = (id) => {
+//   const storage = localStorage.getItem('inProgressRecipes');
+//   console.log(storage);
+//   if (!storage) return false;
+//   const listOfRecipes = JSON.parse(storage);
+//   const newList = listOfRecipes.meals.filter((recipeMap) => (recipeMap.id !== id));
+//   localStorage.setItem('inProgressRecipes', JSON.stringify(newList));
+// };
 
 const isInProgressRecipe = (comparedId, type) => {
   const local = localStorage.getItem('inProgressRecipes');
@@ -177,11 +142,12 @@ const isInProgressRecipe = (comparedId, type) => {
 };
 
 const addToDoneRecipe = (recipe) => {
-  const oldRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
-  if (!Object.keys(oldRecipe).length) {
-    localStorage.setItem('doneRecipes', [recipe]);
+  const storage = localStorage.getItem('doneRecipes');
+  if (!storage) {
+    localStorage.setItem('doneRecipes', JSON.stringify([{ ...recipe }]));
     return;
   }
+  const oldRecipe = JSON.parse(storage);
   localStorage.setItem('doneRecipes', JSON.stringify([...oldRecipe, recipe]));
 };
 
@@ -190,25 +156,16 @@ const isDoneRecipe = (comparedId) => {
   if (!doneRecipes) {
     return false;
   }
-  return JSON.parse(doneRecipes).some(({ id }) => id === comparedId);
-};
-
-/**
- * @name cleanAllLocalStorage
- * @description clean the localStorage .
- */
-const cleanAllLocalStorage = () => {
-  localStorage.clear();
+  const parsed = JSON.parse(doneRecipes);
+  console.log(parsed);
+  console.log(comparedId)
+  return parsed.some(({ id }) => id === comparedId);
 };
 
 const storage = {
   addFavoriteRecipe,
   addInProgressRecipe,
-  cleanAllLocalStorage,
-  editFavoriteRecipe,
-  editInProgressRecipe,
   removeFavoriteRecipe,
-  removeProgressRecipe,
   saveTokensOnStorage,
   saveUserOnStorage,
   isDoneRecipe,

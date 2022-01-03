@@ -143,7 +143,7 @@ const FoodsDetails = ({ match: { params: { id } } }) => {
 };
 
 FoodsDetails.propTypes = {
-  match: PropType.objectOf(PropType.any).isRequired,
+  match: PropType.oneOfType([PropType.object, PropType.array]).isRequired,
 };
 
 export default FoodsDetails;
