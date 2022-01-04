@@ -8,8 +8,7 @@ import Drinks from './pages/Drinks';
 import Foods from './pages/Foods';
 import FoodsDetails from './pages/FoodDetails';
 import DrinksDetails from './pages/DrinksDetails';
-import FoodsDetailsIngredients from './pages/FoodDetailsIngredients';
-import FoodsIngredients from './pages/FoodIngredients';
+import FoodIngredients from './pages/FoodIngredients';
 import DrinksIngredients from './pages/DrinksIngredients';
 import RecipesMade from './pages/RecipesMade';
 import Profile from './pages/Profile';
@@ -18,6 +17,8 @@ import ExploreFood from './pages/ExploreFood';
 import ExploreDrinks from './pages/ExploreDrinks';
 import NotFound from './pages/NotFound';
 import ExploreForArea from './pages/ExploreForArea';
+import FoodsInProgress from './pages/FoodsInProgress';
+import DrinksInProgress from './pages/DrinksInProgress';
 
 function App() {
   return (
@@ -29,6 +30,16 @@ function App() {
           <Route exact path="/comidas" render={ (props) => <Foods { ...props } /> } />
           <Route exact path="/bebidas" render={ (props) => <Drinks { ...props } /> } />
           <Route
+            exact
+            path="/comidas/:id/in-progress"
+            component={ (props) => <FoodsInProgress { ...props } /> }
+          />
+          <Route
+            exact
+            path="/bebidas/:id/in-progress"
+            component={ (props) => <DrinksInProgress { ...props } /> }
+          />
+          <Route
             path="/bebidas/:id"
             render={ (props) => <DrinksDetails { ...props } /> }
           />
@@ -38,18 +49,8 @@ function App() {
           />
           <Route
             exact
-            path="/comidas/:id-comidas/ingredientes"
-            component={ FoodsDetailsIngredients }
-          />
-          <Route
-            exact
-            path="/bebidas/:id-bebidas/ingredientes"
-            component={ DrinksDetails }
-          />
-          <Route
-            exact
             path="/explorar/comidas/ingredientes"
-            component={ FoodsIngredients }
+            component={ FoodIngredients }
           />
           <Route
             exact
