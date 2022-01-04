@@ -40,13 +40,6 @@ function Ingredients({ howToDo, id, type }) {
               ingredient={ ingredient }
               check={ ingredientCheck.some((e) => e === ingredient) }
             />
-            {/* <input
-              type="checkbox"
-              onChange={ () => handleCheck(ingredient) }
-              onClick={ teste }
-              className="checkbox"
-              // checked={ ingredientCheck.some((e) => e === ingredient) }
-            /> */}
             {`${ingredient} ${measurement}`}
           </li>
         ))

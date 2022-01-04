@@ -61,4 +61,15 @@ describe('Teste de funcionalidade do FoodInProgress', () => {
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
     expect(favorite).toHaveLength(1);
   });
+  test('Teste6', async () => {
+    renderWithRouter(<Provider><DrinksInProgress { ...fakeProp } /></Provider>);
+    localStorage.clear();
+    const favoriteButton = await screen.findByRole('button', { name: 'Favoritar' });
+    userEvent.click(favoriteButton);
+    const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    expect(favorite).toHaveLength(1);
+    userEvent.click(favoriteButton);
+    const favoriteAfter = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    expect(favoriteAfter).toHaveLength(0);
+  });
 });
