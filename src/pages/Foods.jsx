@@ -45,7 +45,7 @@ const Foods = () => {
   }
 
   return (
-    <>
+    <div>
       <Header />
       <CategoriesButtons callback={ handleButton } categories={ categories } />
       { !!meals && meals.slice(0, ARRAY_LIMIT).map((meal, i) => (
@@ -59,7 +59,7 @@ const Foods = () => {
         />
       )) }
       <Footer />
-    </>
+    </div>
   );
 };
 
