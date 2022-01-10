@@ -1,0 +1,58 @@
+.favoritesCard {
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: fit-content;
+  margin-left: 13px;
+  width: 333px;
+}
+
+.favoritesCard a {
+  text-decoration: none;
+}
+
+.containerCardFavorites {
+  margin-top: 20px;
+}
+
+.favoritesCard button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.infos {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageFavorite {
+  height: 143px;
+  margin-right: 5px;
+  width: 165px;
+}
+
+.topText {
+  color: darkgray;
+  font-size: 15px;
+}
+
+.title {
+  font-size: 21px;
+}
+
+.filterButtons {
+  background: #ef5034;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  height: 45px;
+  width: 102px;
+}
+
+.containerButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  width: 100vw;
+}

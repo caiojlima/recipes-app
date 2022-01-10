@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import FavoritesCard from '../components/FavoritesCard';
 import FilterButtons from '../components/FilterButtons';
+import styles from '../styles/FavoritesRecipes.module.css';
 
 const FavoritesRecipes = () => {
   const [favorites, setFavorites] = useState([]);
@@ -33,11 +34,11 @@ const FavoritesRecipes = () => {
   };
 
   return (
-    <>
+    <div className={ styles.containerFavorites }>
       <Header />
       <FilterButtons callback={ filterBy } />
       { favorites && favorites.map((fav, i) => (
-        <div key={ i }>
+        <div key={ i } className={ styles.containerCardFavorites }>
           <FavoritesCard
             area={ (fav.type === 'comida') ? fav.area : fav.alcoholicOrNot }
             img={ fav.image }
@@ -50,7 +51,7 @@ const FavoritesRecipes = () => {
           />
         </div>
       )) }
-    </>
+    </div>
   );
 };
 
