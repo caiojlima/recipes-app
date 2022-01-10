@@ -1,0 +1,73 @@
+.container {
+  height: 640px;
+  width: 360px;
+}
+
+.containerFood {
+  align-items: center;
+  background-color: #ef5034;
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  width: 360px;
+}
+
+.explore {
+  align-items: center;
+  background-color: #ef5034;
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  padding-top: 20px;
+  width: 360px;
+}
+
+.explore > a {
+  margin-bottom: 30px;
+}
+
+.containerDrink {
+  align-items: center;
+  background: #ef5034;
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  padding-top: 20px;
+  width: 360px;
+}
+
+.containerDrink > a {
+  margin-bottom: 30px;
+}
+
+.containerFood div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.buttonsExplore {
+  background: #f3f0f0;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.25);
+  color: #c21f03;
+  height: 80px;
+  width: 290px;
+}
+
+.supreseMe {
+  background-color: #ffc3c3;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.25);
+  color: black;
+  height: 80px;
+  width: 290px;
+}
+
+.containerFood > div > a {
+  margin-bottom: 10px;
+}
