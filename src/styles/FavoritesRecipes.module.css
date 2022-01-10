@@ -20,12 +20,6 @@
   cursor: pointer;
 }
 
-.infos {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
 .imageFavorite {
   height: 143px;
   margin-right: 5px;
