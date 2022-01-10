@@ -86,7 +86,6 @@ const Header = () => {
           data-testid="search-input"
         />
       }
-      { console.log(pathname) }
       {
         pathname !== '/perfil' && (
           <SearchBar inputValue={ searchInput } pathname={ pathname } />
