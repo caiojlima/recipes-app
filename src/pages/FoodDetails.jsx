@@ -59,9 +59,20 @@ const renderRecipe = (
   return (
     <>
       <div className={ Details.imgContainer }>
-        <img className={ Details.recipeImg } data-testid="recipe-photo" src={ strMealThumb } alt="" />
+        <img
+          className={ Details.recipeImg }
+          data-testid="recipe-photo"
+          src={ strMealThumb }
+          alt=""
+        />
         <h2 className={ Details.recipeTitle } data-testid="recipe-title">{ strMeal }</h2>
-        <p className={ Details.recipeCategory } data-testid="recipe-category">{strCategory}</p>
+        <p
+          className={ Details.recipeCategory }
+          data-testid="recipe-category"
+        >
+          {strCategory}
+
+        </p>
         <button
           className={ Details.favoritar }
           src={ favorite }
@@ -92,7 +103,12 @@ const renderRecipe = (
           </li>)) }
       </ul>
       <h2 className={ Details.ulTitle }>Instructions</h2>
-      <p className={ Details.instructions } data-testid="instructions">{strInstructions}</p>
+      <p
+        className={ Details.instructions }
+        data-testid="instructions"
+      >
+        {strInstructions}
+      </p>
       <h2 className={ Details.ulTitle }>Recomendations</h2>
       <div className={ Details.carrosel } style={ componentContainerStyle }>
         {drinks.slice(0, MAX_NUMBER).map((drink, index) => (
@@ -106,7 +122,15 @@ const renderRecipe = (
           </div>
         ))}
       </div>
-      { strYoutube && <iframe className={ Details.video } title="video" data-testid="video" src={ strYoutube } frameBorder="0" />}
+      { strYoutube && (
+        <iframe
+          className={ Details.video }
+          title="video"
+          data-testid="video"
+          src={ strYoutube }
+          frameBorder="0"
+        />
+      )}
       {!storage.isDoneRecipe(recipe.idMeal)
         && (
           <Link to={ `/comidas/${recipe.idMeal}/in-progress` }>
