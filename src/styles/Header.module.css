@@ -1,0 +1,9 @@
+.topBtnContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.srcBtnContainer {
+  width: 46px;
+}

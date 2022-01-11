@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import { topBtnContainer, srcBtnContainer } from '../styles/Header.module.css';
 
 const Header = () => {
   const [toggleInput, setToggleInput] = useState(false);
@@ -47,31 +48,35 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <Link to="/perfil">
-        <img data-testid="profile-top-btn" src={ profileIcon } alt="Icone de Perfil" />
-      </Link>
-      <h1 data-testid="page-title">
-        {
-          toggleTitle(pathname)
-        }
-      </h1>
-      {(pathname !== '/explorar'
-      && pathname !== '/explorar/comidas'
-      && pathname !== '/explorar/bebidas'
-      && pathname !== '/explorar/comidas/ingredientes'
-      && pathname !== '/explorar/bebidas/ingredientes'
-      && pathname !== '/perfil'
-      && pathname !== '/receitas-feitas'
-      && pathname !== '/receitas-favoritas')
-      && (
-        <button onClick={ handleInput } type="button">
-          <img
-            src={ searchIcon }
-            alt="Icone de Pesquisa"
-            data-testid="search-top-btn"
-          />
-        </button>)}
+    <header>
+      <div className={ topBtnContainer }>
+        <Link to="/perfil">
+          <img data-testid="profile-top-btn" src={ profileIcon } alt="Icone de Perfil" />
+        </Link>
+        <h1 data-testid="page-title">
+          {
+            toggleTitle(pathname)
+          }
+        </h1>
+        <div className={ srcBtnContainer }>
+          {(pathname !== '/explorar'
+          && pathname !== '/explorar/comidas'
+          && pathname !== '/explorar/bebidas'
+          && pathname !== '/explorar/comidas/ingredientes'
+          && pathname !== '/explorar/bebidas/ingredientes'
+          && pathname !== '/perfil'
+          && pathname !== '/receitas-feitas'
+          && pathname !== '/receitas-favoritas')
+          && (
+            <button onClick={ handleInput } type="button">
+              <img
+                src={ searchIcon }
+                alt="Icone de Pesquisa"
+                data-testid="search-top-btn"
+              />
+            </button>)}
+        </div>
+      </div>
       {
         toggleInput
         && <input
@@ -81,8 +86,12 @@ const Header = () => {
           data-testid="search-input"
         />
       }
-      <SearchBar inputValue={ searchInput } pathname={ pathname } />
-    </div>
+      {
+        pathname !== '/perfil' && (
+          <SearchBar inputValue={ searchInput } pathname={ pathname } />
+        )
+      }
+    </header>
   );
 };
 

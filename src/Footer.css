@@ -1,4 +1,9 @@
 footer {
+  border-top: 2px solid rgb(239, 80, 52);
   bottom: 0;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
   position: fixed;
+  width: 100%;
 }
