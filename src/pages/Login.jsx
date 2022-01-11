@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import storage from '../storage';
+import loginStyle from '../styles/Login.module.css';
 
 const Login = () => {
   const [state, setState] = useState({ email: '', password: '', isButtonDisabled: true });
@@ -25,13 +26,15 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className={ loginStyle.container }>
+      <h2 className={ loginStyle.title }>Recipe Heaven</h2>
       <input
         data-testid="email-input"
         type="email"
         name="email"
         onChange={ handleChange }
         value={ state.email }
+        className={ loginStyle.email }
       />
       <input
         data-testid="password-input"
@@ -39,6 +42,7 @@ const Login = () => {
         name="password"
         onChange={ handleChange }
         value={ state.password }
+        className={ loginStyle.password }
       />
       <Link to="/comidas">
         <button
@@ -46,6 +50,7 @@ const Login = () => {
           data-testid="login-submit-btn"
           disabled={ state.isButtonDisabled }
           onClick={ handleSubmit }
+          className={ loginStyle.button }
         >
           Entrar
         </button>

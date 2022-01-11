@@ -5,11 +5,13 @@ import RecipeContext from '../context/RecipeContext';
 import storage from '../storage';
 import blackIcon from '../images/blackHeartIcon.svg';
 import whiteIcon from '../images/whiteHeartIcon.svg';
+import Details from '../styles/Details.module.css';
 
 const componentContainerStyle = {
   overflowX: 'scroll',
+  overflowY: 'hidden',
   display: 'flex',
-  height: '200px',
+  height: '100px',
   width: '200px',
 };
 
@@ -17,7 +19,6 @@ const componentStyle = {
   width: '90px',
   height: '100px',
   flexBasis: '50px',
-  margin: '15px',
 };
 
 const handleFavorite = (recipe, setUpdate) => {
@@ -57,38 +58,43 @@ const renderRecipe = (
     { ingredient: ingredients[index], measurement: measurements[index] }));
   return (
     <>
-      <img data-testid="recipe-photo" src={ strMealThumb } alt="" />
-      <h2 data-testid="recipe-title">{ strMeal }</h2>
-      <p data-testid="recipe-category">{strCategory}</p>
-      <button
-        src={ favorite }
-        data-testid="favorite-btn"
-        type="button"
-        onClick={ () => handleFavorite(recipe, setUpdate) }
-      >
-        Favoritar
-      </button>
-      <button
-        data-testid="share-btn"
-        type="button"
-        onClick={ () => {
-          navigator.clipboard.writeText(`http://localhost:3000/comidas/${recipe.idMeal}`);
-          setLinkCopiado('Link copiado!');
-        } }
-      >
-        Compartilhar
-      </button>
+      <div className={ Details.imgContainer }>
+        <img className={ Details.recipeImg } data-testid="recipe-photo" src={ strMealThumb } alt="" />
+        <h2 className={ Details.recipeTitle } data-testid="recipe-title">{ strMeal }</h2>
+        <p className={ Details.recipeCategory } data-testid="recipe-category">{strCategory}</p>
+        <button
+          className={ Details.favoritar }
+          src={ favorite }
+          data-testid="favorite-btn"
+          type="button"
+          onClick={ () => handleFavorite(recipe, setUpdate) }
+        >
+          .
+        </button>
+        <button
+          className={ Details.compartilhar }
+          data-testid="share-btn"
+          type="button"
+          onClick={ () => {
+            navigator.clipboard.writeText(`http://localhost:3000/comidas/${recipe.idMeal}`);
+            setLinkCopiado('Link copiado!');
+          } }
+        >
+          .
+        </button>
+      </div>
       { !!linkCopiado && (<h1>{ linkCopiado }</h1>)}
-      <ul>
-        howToDo
+      <strong className={ Details.ulTitle }>How To Prepare:</strong>
+      <ul className={ Details.ingredients }>
         { howToDo.map(({ ingredient, measurement }, index) => (
           <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
             {`${ingredient} ${measurement}`}
           </li>)) }
       </ul>
-      <p data-testid="instructions">{strInstructions}</p>
-      <iframe title="video" data-testid="video" src={ strYoutube } frameBorder="0" />
-      <div style={ componentContainerStyle }>
+      <h2 className={ Details.ulTitle }>Instructions</h2>
+      <p className={ Details.instructions } data-testid="instructions">{strInstructions}</p>
+      <h2 className={ Details.ulTitle }>Recomendations</h2>
+      <div className={ Details.carrosel } style={ componentContainerStyle }>
         {drinks.slice(0, MAX_NUMBER).map((drink, index) => (
           <div
             style={ componentStyle }
@@ -100,6 +106,7 @@ const renderRecipe = (
           </div>
         ))}
       </div>
+      { strYoutube && <iframe className={ Details.video } title="video" data-testid="video" src={ strYoutube } frameBorder="0" />}
       {!storage.isDoneRecipe(recipe.idMeal)
         && (
           <Link to={ `/comidas/${recipe.idMeal}/in-progress` }>
@@ -107,6 +114,7 @@ const renderRecipe = (
               type="button"
               data-testid="start-recipe-btn"
               style={ { position: 'fixed', bottom: '0%' } }
+              className={ Details.startRecipe }
             >
               { storage.isInProgressRecipe(recipe.idMeal, 'meals')
                 ? 'Continuar Receita' : 'Iniciar Receita'}
@@ -134,7 +142,7 @@ const FoodsDetails = ({ match: { params: { id } } }) => {
     fetchDrinks(setState);
   }, [id]);
   return (
-    <div>
+    <div className={ Details.mainContainer }>
       { !!Object.keys(idMeal).length && !!state && renderRecipe(
         { idMeal, state, linkCopiado, setLinkCopiado, update, setUpdate },
       )}
