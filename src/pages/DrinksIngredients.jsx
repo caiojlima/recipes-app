@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
+import styles from '../styles/IngredientCard.module.css';
 
 const DrinksIngredients = () => {
   const [state, setState] = useState([]);
@@ -23,23 +24,25 @@ const DrinksIngredients = () => {
   }, []);
 
   return (
-    <>
+    <section className={ styles.containerIngredients }>
       <Header />
-      { sliceArray().map((meal, i) => (
-        <div key={ i }>
-          <IngredientCard
-            ingredientId={ `${i}-ingredient-card` }
-            id={ i }
-            meal={ meal }
-            index={ i }
-            name="strIngredient1"
-            type="bebidas"
-            img="thecocktail"
-          />
-        </div>
-      )) }
+      <section className={ styles.containerIngredientsCards }>
+        { sliceArray().map((meal, i) => (
+          <div key={ i } className={ styles.cards }>
+            <IngredientCard
+              ingredientId={ `${i}-ingredient-card` }
+              id={ i }
+              meal={ meal }
+              index={ i }
+              name="strIngredient1"
+              type="bebidas"
+              img="thecocktail"
+            />
+          </div>
+        )) }
+      </section>
       <Footer />
-    </>
+    </section>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
+import styles from '../styles/IngredientCard.module.css';
 
 const IngredientCard = ({ meal, index, name, type, img, ingredientId }) => {
   const { handleMeals, handleDrinks, handleIngredient } = useContext(RecipeContext);
@@ -14,20 +15,24 @@ const IngredientCard = ({ meal, index, name, type, img, ingredientId }) => {
   }
 
   return (
-    <div>
-      <h1 data-testid={ `${index}-card-name` }>{meal[name]}</h1>
-      <Link
-        to={ `/${type}` }
-        onClick={ () => ingredientsFilter(meal[name]) }
-        data-testid={ ingredientId }
+    <Link
+      to={ `/${type}` }
+      onClick={ () => ingredientsFilter(meal[name]) }
+      data-testid={ ingredientId }
+    >
+      <img
+        data-testid={ `${index}-card-img` }
+        src={ `https://www.${img}db.com/images/ingredients/${meal[name]}-Small.png` }
+        alt="Ingredient Pic"
+        className={ styles.imageIngredient }
+      />
+      <h1
+        data-testid={ `${index}-card-name` }
+        className={ styles.title }
       >
-        <img
-          data-testid={ `${index}-card-img` }
-          src={ `https://www.${img}db.com/images/ingredients/${meal[name]}-Small.png` }
-          alt="Ingredient Pic"
-        />
-      </Link>
-    </div>
+        {meal[name]}
+      </h1>
+    </Link>
   );
 };
 
