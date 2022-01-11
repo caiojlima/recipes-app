@@ -35,7 +35,8 @@ const handleFavorite = (recipe, setUpdate) => {
 const renderRecipe = (
   { idDrink: recipe, state: meals, linkCopiado, setLinkCopiado, update, setUpdate },
 ) => {
-  const { strDrinkThumb, strDrink, strCategory, strInstructions, strAlcoholic } = recipe;
+  const { strDrinkThumb, strDrink, strCategory, strInstructions,
+  } = recipe;
   const favorite = (update)
     ? blackIcon : whiteIcon;
   const recipeArray = Object.entries(recipe);
@@ -60,9 +61,20 @@ const renderRecipe = (
   return (
     <>
       <div className={ Details.imgContainer }>
-        <img className={ Details.recipeImg } data-testid="recipe-photo" src={ strDrinkThumb } alt="" />
+        <img
+          className={ Details.recipeImg }
+          data-testid="recipe-photo"
+          src={ strDrinkThumb }
+          alt=""
+        />
         <h2 className={ Details.recipeTitle } data-testid="recipe-title">{ strDrink }</h2>
-        <p className={ Details.recipeCategory } data-testid="recipe-category">{strCategory}</p>
+        <p
+          className={ Details.recipeCategory }
+          data-testid="recipe-category"
+        >
+          {strCategory}
+
+        </p>
         <button
           className={ Details.favoritar }
           src={ favorite }
@@ -93,7 +105,12 @@ const renderRecipe = (
           </li>)) }
       </ul>
       <h2 className={ Details.ulTitle }>Instructions</h2>
-      <p className={ Details.instructions } data-testid="instructions">{strInstructions}</p>
+      <p
+        className={ Details.instructions }
+        data-testid="instructions"
+      >
+        {strInstructions}
+      </p>
       <h2 className={ Details.ulTitle }>Recomendations</h2>
       <div className={ Details.carrosel } style={ componentContainerStyle }>
         {meals.slice(0, MAX_NUMBER).map((meal, index) => (
