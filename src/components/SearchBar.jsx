@@ -2,7 +2,9 @@ import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
-import styles from '../styles/Header.module.css';
+import {
+  radioButtons, searchBtn, searchContainer, font,
+} from '../styles/SearchBar.module.css';
 
 const SearchBar = ({ inputValue, pathname }) => {
   const [state, setState] = useState({ radioInput: 'INGREDIENT' });
@@ -41,10 +43,10 @@ const SearchBar = ({ inputValue, pathname }) => {
   }
 
   return (
-    <div className={ styles.radioButtons }>
-      <label htmlFor="ingredient-search">
-        Por Ingrediente
+    <div className={ searchContainer }>
+      <label className={ font } htmlFor="ingredient-search">
         <input
+          className={ radioButtons }
           type="radio"
           id="ingredient-search"
           name="radioInput"
@@ -53,10 +55,11 @@ const SearchBar = ({ inputValue, pathname }) => {
           onChange={ handleRadio }
           checked={ state.radioInput === 'INGREDIENT' }
         />
+        Ingrediente
       </label>
-      <label htmlFor="name-search">
-        Nome
+      <label className={ font } htmlFor="name-search">
         <input
+          className={ radioButtons }
           type="radio"
           id="name-search"
           name="radioInput"
@@ -65,10 +68,11 @@ const SearchBar = ({ inputValue, pathname }) => {
           onChange={ handleRadio }
           checked={ state.radioInput === 'NAME' }
         />
+        Nome
       </label>
-      <label htmlFor="letter-search">
-        Primeira letra
+      <label className={ font } htmlFor="letter-search">
         <input
+          className={ radioButtons }
           type="radio"
           id="letter-search"
           name="radioInput"
@@ -77,8 +81,10 @@ const SearchBar = ({ inputValue, pathname }) => {
           onChange={ handleRadio }
           checked={ state.radioInput === 'LETTER' }
         />
+        Primeira letra
       </label>
       <button
+        className={ searchBtn }
         type="button"
         data-testid="exec-search-btn"
         onClick={ pathname === '/comidas' ? handleMealsButton : handleDrinksButton }

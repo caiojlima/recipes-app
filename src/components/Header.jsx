@@ -3,7 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import { topBtnContainer, srcBtnContainer } from '../styles/Header.module.css';
+import {
+  topBtnContainer, srcBtnContainer, srcInput, srcInputContainer,
+} from '../styles/Header.module.css';
 
 const Header = () => {
   const [toggleInput, setToggleInput] = useState(false);
@@ -79,12 +81,16 @@ const Header = () => {
       </div>
       {
         toggleInput
-        && <input
-          value={ searchInput }
-          onChange={ handleChange }
-          type="text"
-          data-testid="search-input"
-        />
+        && (
+          <div className={ srcInputContainer }>
+            <input
+              className={ srcInput }
+              value={ searchInput }
+              onChange={ handleChange }
+              type="text"
+              data-testid="search-input"
+            />
+          </div>)
       }
       {
         pathname !== '/perfil' && (

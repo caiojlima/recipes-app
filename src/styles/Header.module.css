@@ -8,6 +8,14 @@
   width: 46px;
 }
 
-.radioButtons {
-  font-size: 18px;
+.srcInputContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.srcInput {
+  border: 1px solid orangered;
+  margin: auto;
+  width: 80%;
 }
