@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import blackIcon from '../images/blackHeartIcon.svg';
 import storage from '../storage';
+import styles from '../styles/FavoritesRecipes.module.css';
 
 const FavoritesCard = ({ index, name, category, area, img, type, id, callback }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -17,36 +18,53 @@ const FavoritesCard = ({ index, name, category, area, img, type, id, callback })
   };
 
   return (
-    <div>
+    <div className={ styles.favoritesCard }>
       <Link to={ `/${type}s/${id}` }>
-        <h1 data-testid={ `${index}-horizontal-name` }>{name}</h1>
         <img
           width="200px"
+          className={ styles.imageFavorite }
           data-testid={ `${index}-horizontal-image` }
           src={ img }
           alt="Recipe Favorite"
         />
       </Link>
-      <p data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</p>
-      <button
-        type="button"
-        src={ shareIcon }
-        data-testid={ `${index}-horizontal-share-btn` }
-        onClick={ () => {
-          navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`);
-          toggleCopy();
-        } }
-      >
-        Share
-      </button>
-      <button
-        type="button"
-        src={ blackIcon }
-        data-testid={ `${index}-horizontal-favorite-btn` }
-        onClick={ () => { handleFavorite(); callback(id); } }
-      >
-        Desfavoritar
-      </button>
+      <div className={ styles.infos }>
+        <Link to={ `/${type}s/${id}` }>
+          <p
+            data-testid={ `${index}-horizontal-top-text` }
+            className={ styles.topText }
+          >
+            {`${area} - ${category}`}
+          </p>
+          <h1
+            className={ styles.title }
+            data-testid={ `${index}-horizontal-name` }
+          >
+            {name}
+          </h1>
+        </Link>
+
+        <div>
+          <button
+            type="button"
+            data-testid={ `${index}-horizontal-share-btn` }
+            onClick={ () => {
+              navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`);
+              toggleCopy();
+            } }
+          >
+            <img src={ shareIcon } alt="Botão de Compartilhar" />
+          </button>
+          <button
+            type="button"
+            src={ blackIcon }
+            data-testid={ `${index}-horizontal-favorite-btn` }
+            onClick={ () => { handleFavorite(); callback(id); } }
+          >
+            <img src={ blackIcon } alt="Botão de Favoritar" />
+          </button>
+        </div>
+      </div>
       { isCopied && <h3>Link copiado!</h3> }
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
+import styles from '../styles/Header.module.css';
 
 const SearchBar = ({ inputValue, pathname }) => {
   const [state, setState] = useState({ radioInput: 'INGREDIENT' });
@@ -40,9 +41,9 @@ const SearchBar = ({ inputValue, pathname }) => {
   }
 
   return (
-    <div>
+    <div className={ styles.radioButtons }>
       <label htmlFor="ingredient-search">
-        Por Ingrediente:
+        Por Ingrediente
         <input
           type="radio"
           id="ingredient-search"
@@ -54,7 +55,7 @@ const SearchBar = ({ inputValue, pathname }) => {
         />
       </label>
       <label htmlFor="name-search">
-        Por Nome:
+        Nome
         <input
           type="radio"
           id="name-search"
@@ -66,7 +67,7 @@ const SearchBar = ({ inputValue, pathname }) => {
         />
       </label>
       <label htmlFor="letter-search">
-        Por Primeira Letra:
+        Primeira letra
         <input
           type="radio"
           id="letter-search"
