@@ -4,10 +4,11 @@ import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealsIcon from '../images/mealIcon.svg';
 import '../Footer.css';
+import FooterStyle from '../styles/Foods.module.css';
 
 function Footer() {
   return (
-    <footer data-testid="footer">
+    <footer className={ FooterStyle.footer } data-testid="footer">
       <Link to="/bebidas">
         <img
           src={ drinkIcon }

@@ -1,0 +1,90 @@
+.optionsContainer  button{
+  border: none;
+  background-color: rgb(239, 80, 52);
+  color: aliceblue;
+  flex-basis: 60px;
+  height: 30px;
+  margin: 0%;
+}
+
+.optionsContainer  button:hover{
+  border: none;
+  background-color: rgb(230, 49, 17);
+  color: aliceblue;
+  height: 30px;
+  margin: 0%;
+}
+
+.optionsContainer {
+  background-color: rgb(239, 80, 52);
+  height: 25px;
+  width: 100%;
+}
+
+.optionsContainer > div {
+  background-color: rgb(239, 80, 52);
+  display: flex;
+  justify-content: space-evenly;
+  height: 20px;
+  width: 100%;
+  margin: 0px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+}
+
+.card {
+  margin: 10px;
+}
+
+.card > div {
+  position: relative;
+  border-radius: 10px;
+  border: 2px solid rgba(80, 80, 80, 0.37);
+  height: 120px;
+}
+
+.card > div > a {
+  position: absolute;
+  bottom: 0%;
+  margin: 0%;
+  
+  color: white;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' d='M19,0H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V5A5.006,5.006,0,0,0,19,0ZM12,16a2.993,2.993,0,0,1-1.987-.752c-.327-.291-.637-.574-.84-.777L6.3,11.647a1,1,0,0,1,1.4-1.426L10.58,13.05c.188.187.468.441.759.7a1,1,0,0,0,1.323,0c.29-.258.57-.512.752-.693L16.3,10.221a1,1,0,1,1,1.4,1.426l-2.879,2.829c-.2.2-.507.48-.833.769A2.99,2.99,0,0,1,12,16Z' fill='#373737' data-original='#000000'");
+  background-size: 100%;
+}
+
+.card > div > h1 {
+  position: absolute;
+  top: 0%;
+  margin: 0%;
+  width: 100%;
+  font-size: 15px;
+  text-align: center;
+  color: rgb(42, 42, 42);
+  font-weight: bolder;
+  text-shadow:  1px 1px 0px white;
+  backdrop-filter: blur(4px) contrast(70%);
+}
+
+.card > div > img {
+  width: 120px;
+  border-radius: 10px;
+  margin: 0%;
+}
+
+.footer {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  bottom: 0%;
+  left: 0%;
+  margin-top: 50px;
+  backdrop-filter: blur(10px) contrast(70%);
+  height: 35px;
+}

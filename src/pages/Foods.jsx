@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import CategoriesButtons from '../components/CategoriesButtons';
+import FoodsStyle from '../styles/Foods.module.css';
 
 const Foods = () => {
   const [categories, setCategories] = useState([]);
@@ -47,17 +48,23 @@ const Foods = () => {
   return (
     <div>
       <Header />
-      <CategoriesButtons callback={ handleButton } categories={ categories } />
-      { !!meals && meals.slice(0, ARRAY_LIMIT).map((meal, i) => (
-        <RecipeCard
-          key={ i }
-          index={ i }
-          name={ meal.strMeal }
-          img={ meal.strMealThumb }
-          idMeal={ meal.idMeal }
-          type="comidas"
-        />
-      )) }
+      <div className={ FoodsStyle.optionsContainer }>
+        <CategoriesButtons callback={ handleButton } categories={ categories } />
+      </div>
+      <div className={ FoodsStyle.cardContainer }>
+        { !!meals && meals.slice(0, ARRAY_LIMIT).map((meal, i) => (
+          <div className={ FoodsStyle.card } key={ i }>
+            <RecipeCard
+              key={ i }
+              index={ i }
+              name={ meal.strMeal }
+              img={ meal.strMealThumb }
+              idMeal={ meal.idMeal }
+              type="comidas"
+            />
+          </div>
+        )) }
+      </div>
       <Footer />
     </div>
   );

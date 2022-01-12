@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import CategoriesButtons from '../components/CategoriesButtons';
+import FoodsStyle from '../styles/Foods.module.css';
 
 const Drinks = () => {
   const { drinks, handleDrinks, isIngredient } = useContext(RecipeContext);
@@ -40,21 +41,27 @@ const Drinks = () => {
   }
 
   return (
-    <>
+    <div>
       <Header />
-      <CategoriesButtons categories={ categories } callback={ handleButton } />
-      { !!drinks && drinks.slice(0, CARD_LIMT).map((drink, i) => (
-        <RecipeCard
-          key={ i }
-          index={ i }
-          name={ drink.strDrink }
-          img={ drink.strDrinkThumb }
-          idMeal={ drink.idDrink }
-          type="bebidas"
-        />
-      )) }
+      <div className={ FoodsStyle.optionsContainer }>
+        <CategoriesButtons categories={ categories } callback={ handleButton } />
+      </div>
+      <div className={ FoodsStyle.cardContainer }>
+        { !!drinks && drinks.slice(0, CARD_LIMT).map((drink, i) => (
+          <div className={ FoodsStyle.card } key={ i }>
+            <RecipeCard
+              key={ i }
+              index={ i }
+              name={ drink.strDrink }
+              img={ drink.strDrinkThumb }
+              idMeal={ drink.idDrink }
+              type="bebidas"
+            />
+          </div>
+        )) }
+      </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
