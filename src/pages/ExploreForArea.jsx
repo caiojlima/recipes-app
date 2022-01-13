@@ -17,7 +17,7 @@ const ExploreForArea = () => {
       setList(listArea);
       handleMeals('NAME');
     });
-  }, []);
+  }, [getListOfAreas, handleMeals]);
 
   useEffect(() => {
     if (state.dropdownArea === 'All') {

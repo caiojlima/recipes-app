@@ -1,5 +1,7 @@
 # Bem vindo ao repositório do Projeto App de Receitas!
 
+![Recipes App](/assets/recipes.gif)
+
 ## Introdução:
 
 Projeto em grupo realizado no período de estudos na Trybe. Esse projeto foi o último do módulo de Front-End. Pelo seu nível de complexidade foi possível testar todo o conhecimento adquirido durando todo o processo.
@@ -27,15 +29,3 @@ Ferramentas utilizadas:
 
 ### OBS: Esse projeto foi utilizado na resolução de 360x640. Portanto, se outra resolução for utilizada alguns elementos podem ter seu posicionamento modificado:
 
-### Testes
-
-Para rodar os testes siga os seguintes passos:
-
-Faça o clone da aplicação no seu terminal e entre na pasta `recipes-app`:
-
-```
-git@github.com:caiojlima/recipes-app.git
-cd recipes-app
-```
-
-Ao entrar na pasta é só digitar `npm test` e pressionar a tecla `a` que os testes irão rodar localmente no seu terminal.

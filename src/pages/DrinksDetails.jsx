@@ -157,7 +157,7 @@ const DrinksDetails = ({ match: { params: { id } } }) => {
   useEffect(() => {
     handleDrinks('ID', id);
     fetchFoods(setState);
-  }, [id]);
+  }, [handleDrinks, id]);
   return (
     <div>
       { !!Object.keys(idDrink).length && !!state && renderRecipe(

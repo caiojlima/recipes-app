@@ -35,11 +35,11 @@ const Foods = () => {
       handleMeals('NAME');
       fetchCategories();
     }
-  }, []);
+  }, [handleMeals, isIngredient]);
 
   useEffect(() => () => {
     handleIngredient(false);
-  }, []);
+  }, [handleIngredient]);
 
   if (meals === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');

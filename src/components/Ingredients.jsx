@@ -17,7 +17,7 @@ function Ingredients({ howToDo, id, type }) {
 
   useEffect(() => {
     getLocal();
-  }, []);
+  }, [getLocal]);
 
   function handleCheck(ingredient) {
     storage.addInProgressRecipe(ingredient, type, id);

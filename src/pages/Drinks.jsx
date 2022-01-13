@@ -34,7 +34,7 @@ const Drinks = () => {
       handleDrinks('NAME');
       fetchCategories();
     }
-  }, []);
+  }, [handleDrinks, isIngredient]);
 
   if (drinks === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');

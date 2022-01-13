@@ -164,7 +164,7 @@ const FoodsDetails = ({ match: { params: { id } } }) => {
   useEffect(() => {
     handleMeals('ID', id);
     fetchDrinks(setState);
-  }, [id]);
+  }, [handleMeals, id]);
   return (
     <div className={ Details.mainContainer }>
       { !!Object.keys(idMeal).length && !!state && renderRecipe(

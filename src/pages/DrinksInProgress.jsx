@@ -13,7 +13,7 @@ function DrinksInProgress({ match: { params: { id } } }) {
 
   useEffect(() => {
     handleDrinks('ID', id);
-  }, []);
+  }, [handleDrinks, id]);
 
   const handleFavorite = (recipe, callback) => {
     const isFavorite = storage.isFavoriteRecipe(recipe.idDrink, 'bebida');
