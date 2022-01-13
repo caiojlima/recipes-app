@@ -8,6 +8,7 @@ function Ingredients({ howToDo, id, type }) {
   const [disabled, setDisabled] = useState(true);
   const [ingredientCheck, setingredientCheck] = useState([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function getLocal() {
     const local = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (!local) return setingredientCheck([]);

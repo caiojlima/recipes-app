@@ -26,7 +26,7 @@ const ExploreForArea = () => {
     if (state.dropdownArea !== 'All') {
       handleMeals('AREA', state.dropdownArea);
     }
-  }, [state.dropdownArea]);
+  }, [handleMeals, state.dropdownArea]);
 
   function handleSelected({ target: { name, value } }) {
     setState({ ...state, [name]: value });
