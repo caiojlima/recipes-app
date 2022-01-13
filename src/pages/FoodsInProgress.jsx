@@ -13,7 +13,7 @@ function FoodsInProgress({ match: { params: { id } } }) {
 
   useEffect(() => {
     handleMeals('ID', id);
-  }, []);
+  }, [handleMeals, id]);
 
   const { strMealThumb, strMeal, strCategory, strInstructions } = idMeal;
 
