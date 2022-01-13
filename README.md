@@ -29,3 +29,4 @@ Ferramentas utilizadas:
 
 ### OBS: Esse projeto foi utilizado na resolução de 360x640. Portanto, se outra resolução for utilizada alguns elementos podem ter seu posicionamento modificado:
 
+Para visualizar esse projeto rodando no seu navegador, basta acessar [este link](https://recipes-app-caiojlima.vercel.app/).
