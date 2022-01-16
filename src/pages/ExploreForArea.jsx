@@ -17,6 +17,7 @@ const ExploreForArea = () => {
       setList(listArea);
       handleMeals('NAME');
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const ExploreForArea = () => {
     if (state.dropdownArea !== 'All') {
       handleMeals('AREA', state.dropdownArea);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.dropdownArea]);
 
   function handleSelected({ target: { name, value } }) {

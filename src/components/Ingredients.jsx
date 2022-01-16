@@ -17,6 +17,7 @@ function Ingredients({ howToDo, id, type }) {
 
   useEffect(() => {
     getLocal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleCheck(ingredient) {

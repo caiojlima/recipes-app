@@ -13,6 +13,7 @@ function FoodsInProgress({ match: { params: { id } } }) {
 
   useEffect(() => {
     handleMeals('ID', id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { strMealThumb, strMeal, strCategory, strInstructions } = idMeal;

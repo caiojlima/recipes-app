@@ -13,6 +13,7 @@ function DrinksInProgress({ match: { params: { id } } }) {
 
   useEffect(() => {
     handleDrinks('ID', id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFavorite = (recipe, callback) => {

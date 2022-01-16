@@ -164,6 +164,7 @@ const FoodsDetails = ({ match: { params: { id } } }) => {
   useEffect(() => {
     handleMeals('ID', id);
     fetchDrinks(setState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   return (
     <div className={ Details.mainContainer }>
